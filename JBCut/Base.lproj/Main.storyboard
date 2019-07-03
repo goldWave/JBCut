@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14810.12" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
+        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14810.12"/>
     </dependencies>
     <scenes>
@@ -16,8 +17,11 @@
                         <menuItem title="Item 2" id="R9N-ww-9Y6">
                             <modifierMask key="keyEquivalentModifierMask"/>
                         </menuItem>
-                        <menuItem title="Item 3" id="7Xr-Rn-9MX">
-                            <modifierMask key="keyEquivalentModifierMask"/>
+                        <menuItem title="show window" keyEquivalent=";" id="7Xr-Rn-9MX">
+                            <modifierMask key="keyEquivalentModifierMask" shift="YES" command="YES"/>
+                            <connections>
+                                <action selector="showWindow:" target="Voe-Tx-rLC" id="dE8-D9-7Qq"/>
+                            </connections>
                         </menuItem>
                         <menuItem title="Quit Application" keyEquivalent="q" id="ZaB-N1-1En">
                             <connections>
