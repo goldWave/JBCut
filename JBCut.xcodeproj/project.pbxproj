@@ -8,21 +8,23 @@
 
 /* Begin PBXBuildFile section */
 		584D3B0B22CC8C1B00F2B0D3 /* BezelWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584D3B0A22CC8C1B00F2B0D3 /* BezelWindow.swift */; };
+		58870FEC22CDAA9100496E44 /* HotKeyCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58870FEB22CDAA9100496E44 /* HotKeyCenter.swift */; };
+		58870FEE22CDCF4400496E44 /* ClipData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58870FED22CDCF4400496E44 /* ClipData.swift */; };
 		58B1AF0822CB332F00C89530 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 58B1AF0722CB332F00C89530 /* Assets.xcassets */; };
 		58B1AF0B22CB332F00C89530 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 58B1AF0922CB332F00C89530 /* Main.storyboard */; };
 		58B1AF1622CB3C1000C89530 /* APPController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B1AF1522CB3C1000C89530 /* APPController.swift */; };
-		58B1AF1822CB3DCB00C89530 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B1AF1722CB3DCB00C89530 /* AppDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		584D3B0A22CC8C1B00F2B0D3 /* BezelWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BezelWindow.swift; sourceTree = "<group>"; };
+		58870FEB22CDAA9100496E44 /* HotKeyCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotKeyCenter.swift; sourceTree = "<group>"; };
+		58870FED22CDCF4400496E44 /* ClipData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipData.swift; sourceTree = "<group>"; };
 		58B1AF0222CB332E00C89530 /* JBCut.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JBCut.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		58B1AF0722CB332F00C89530 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		58B1AF0A22CB332F00C89530 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		58B1AF0C22CB332F00C89530 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		58B1AF0D22CB332F00C89530 /* JBCut.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = JBCut.entitlements; sourceTree = "<group>"; };
 		58B1AF1522CB3C1000C89530 /* APPController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APPController.swift; sourceTree = "<group>"; };
-		58B1AF1722CB3DCB00C89530 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,9 +57,10 @@
 		58B1AF0422CB332E00C89530 /* JBCut */ = {
 			isa = PBXGroup;
 			children = (
-				58B1AF1722CB3DCB00C89530 /* AppDelegate.swift */,
 				58B1AF1522CB3C1000C89530 /* APPController.swift */,
 				584D3B0A22CC8C1B00F2B0D3 /* BezelWindow.swift */,
+				58870FEB22CDAA9100496E44 /* HotKeyCenter.swift */,
+				58870FED22CDCF4400496E44 /* ClipData.swift */,
 				58B1AF0722CB332F00C89530 /* Assets.xcassets */,
 				58B1AF0922CB332F00C89530 /* Main.storyboard */,
 				58B1AF0C22CB332F00C89530 /* Info.plist */,
@@ -137,8 +140,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				58B1AF1822CB3DCB00C89530 /* AppDelegate.swift in Sources */,
+				58870FEE22CDCF4400496E44 /* ClipData.swift in Sources */,
 				584D3B0B22CC8C1B00F2B0D3 /* BezelWindow.swift in Sources */,
+				58870FEC22CDAA9100496E44 /* HotKeyCenter.swift in Sources */,
 				58B1AF1622CB3C1000C89530 /* APPController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

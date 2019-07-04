@@ -7,14 +7,17 @@
 //
 
 import Cocoa
-import Carbon
 
-class APPController: NSObject,NSMenuDelegate {
+@NSApplicationMain
+class APPController: NSObject,NSMenuDelegate, HotKeyDelegate, NSApplicationDelegate {
     
     @IBOutlet weak var mainMenu: NSMenu!
     let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
-    var clipArray = [String]();
+    var clipArray = [ClipData]();
     var lastChangeCount = 0;
+    var nowShowIndex = 0;
+    var filePath: String = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)[0]  + "/clipData.plist";
+    
     
     lazy var beze: BezelWindow = {
         () -> BezelWindow in
@@ -24,17 +27,29 @@ class APPController: NSObject,NSMenuDelegate {
     }()
     
     
+    func applicationDidFinishLaunching(_ aNotification: Notification) {
+        print("applicationDidFinishLaunching")
+    }
+    
     override func awakeFromNib() {
+        print(filePath)
+        
         let button = statusItem.button
         button?.image = NSImage(named: "StatusBarButtonImage")
-        
         
         statusItem.menu = mainMenu
         mainMenu.delegate = self
         
         /*let copyTimer = */Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerFired), userInfo: nil, repeats: true)
         
-        self.registerHotKey()
+        HotKeyCenter.shared.registerHotKey()
+        HotKeyCenter.shared.delegate = self
+        
+        if let unarchivedData = NSKeyedUnarchiver.unarchiveObject(withFile: filePath) as? [ClipData] {
+            clipArray = unarchivedData
+        }
+        
+        print("")
     }
     
     @IBAction func quitButtonClick(_ sender: Any) {
@@ -54,10 +69,13 @@ class APPController: NSObject,NSMenuDelegate {
         
         if lastChangeCount != board.changeCount &&
             !clipString.isEmpty &&
-            clipArray.first != clipString
+            clipArray.first?.clipString != clipString
         {
-            clipArray.insert(clipString, at: 0)
-            print("new added")
+            let data = ClipData.init()
+            data.clipString = clipString
+            data.timeStamp = Int(NSDate().timeIntervalSince1970)
+            clipArray.insert(data, at: 0)
+            writeDateToFile()
         }
         lastChangeCount = board.changeCount
         
@@ -66,35 +84,38 @@ class APPController: NSObject,NSMenuDelegate {
     func menuWillOpen(_ menu: NSMenu) {
         print("menu will open")
     }
-    
-    func registerHotKey() {
         
-        var eventType = EventTypeSpec(eventClass: OSType(kEventClassKeyboard), eventKind: OSType(kEventHotKeyPressed))
-        InstallEventHandler(GetApplicationEventTarget(), { (nextHander, theEvent, userData) -> OSStatus in
-            print("key print")
-            return noErr
-        }, 1, &eventType, nil, nil)
-        
-        
-        let hotKeyID = EventHotKeyID(signature: 1, id: 1)
-        var hotkey: EventHotKeyRef? = nil
-        
-        RegisterEventHotKey(UInt32(kVK_ANSI_L), UInt32(cmdKey|shiftKey), hotKeyID, GetApplicationEventTarget(), OptionBits(0), &hotkey)
-    }
-    
-    
-    func createShowWindow () {
-        self.beze.makeKeyAndOrderFront(nil)
-        NSApp.activate(ignoringOtherApps: true)
-    }
-    
-    @IBAction func showWindow(_ sender: Any) {
-        createShowWindow()
-    }
-}
+    func createShowWindow(isNext: Bool) {
 
-extension String {
-    var isBlank: Bool {
-        return allSatisfy({ $0.isWhitespace })
+        var string: String = "无数据"
+        if nowShowIndex < 0 {
+            print()
+        }
+        
+        nowShowIndex = nowShowIndex >= clipArray.count ? (clipArray.count - 1) : nowShowIndex
+        nowShowIndex = nowShowIndex < 0 ? 0 : nowShowIndex
+        
+        if clipArray.count > nowShowIndex && nowShowIndex >= 0 {
+            string = clipArray[nowShowIndex].clipString
+            string =  String.init(format: "index:%i, total:%i\n%@", nowShowIndex + 1, clipArray.count, string)
+            
+            print(nowShowIndex)
+            nowShowIndex += isNext ? 1 : -1
+            print(nowShowIndex)
+            print("\n\n")
+        }
+        self.beze.showTextString(showString: string)
+        NSApp.activate(ignoringOtherApps: true)
+        
+        self.beze.makeKeyAndOrderFront(nil)
     }
+    
+    func hotKeyCliked(isNext: Bool) {
+        self.createShowWindow(isNext: isNext);
+    }
+
+    func writeDateToFile() {
+        NSKeyedArchiver.archiveRootObject(clipArray, toFile: filePath)
+    }
+    
 }
