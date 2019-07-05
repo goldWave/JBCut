@@ -13,6 +13,7 @@
 		58B1AF0822CB332F00C89530 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 58B1AF0722CB332F00C89530 /* Assets.xcassets */; };
 		58B1AF0B22CB332F00C89530 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 58B1AF0922CB332F00C89530 /* Main.storyboard */; };
 		58B1AF1622CB3C1000C89530 /* APPController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B1AF1522CB3C1000C89530 /* APPController.swift */; };
+		58EB30D222D2DC630056DBB2 /* RoundRexTextfield.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58EB30D122D2DC630056DBB2 /* RoundRexTextfield.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +26,7 @@
 		58B1AF0C22CB332F00C89530 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		58B1AF0D22CB332F00C89530 /* JBCut.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = JBCut.entitlements; sourceTree = "<group>"; };
 		58B1AF1522CB3C1000C89530 /* APPController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APPController.swift; sourceTree = "<group>"; };
+		58EB30D122D2DC630056DBB2 /* RoundRexTextfield.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundRexTextfield.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 			children = (
 				58B1AF1522CB3C1000C89530 /* APPController.swift */,
 				584D3B0A22CC8C1B00F2B0D3 /* BezelWindow.swift */,
+				58EB30D122D2DC630056DBB2 /* RoundRexTextfield.swift */,
 				58870FEB22CDAA9100496E44 /* HotKeyCenter.swift */,
 				58870FED22CDCF4400496E44 /* ClipData.swift */,
 				58B1AF0722CB332F00C89530 /* Assets.xcassets */,
@@ -142,6 +145,7 @@
 			files = (
 				58870FEE22CDCF4400496E44 /* ClipData.swift in Sources */,
 				584D3B0B22CC8C1B00F2B0D3 /* BezelWindow.swift in Sources */,
+				58EB30D222D2DC630056DBB2 /* RoundRexTextfield.swift in Sources */,
 				58870FEC22CDAA9100496E44 /* HotKeyCenter.swift in Sources */,
 				58B1AF1622CB3C1000C89530 /* APPController.swift in Sources */,
 			);

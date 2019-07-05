@@ -13,7 +13,7 @@ import Carbon.HIToolbox
 class APPController: NSObject, NSMenuDelegate, HotKeyDelegate, NSApplicationDelegate, BezelWindowDelegate {
     
     @IBOutlet weak var mainMenu: NSMenu!
-    let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
+    let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
     var clipArray = [ClipData]();
     var lastChangeCount = 0;
     var nowShowIndex = 0;
@@ -23,15 +23,8 @@ class APPController: NSObject, NSMenuDelegate, HotKeyDelegate, NSApplicationDele
     
     lazy var beze: BezelWindow = {
         () -> BezelWindow in
-        
-//        NSSize windowSize = NSMakeSize(325.0, 325.0);
-//        NSSize screenSize = [[NSScreen mainScreen] frame].size;
-//        NSRect windowFrame = NSMakeRect( (screenSize.width - windowSize.width) / 2,
-//                                         (screenSize.height - windowSize.height) / 3,
-//                                         windowSize.width, windowSize.height );
         let bezeSize = NSSize(width: 325, height: 325)
-        let scrrenSize = NSScreen.main?.frame.size
-        let rectSize = NSRect(x: ((scrrenSize?.width ?? 1000) - bezeSize.width) * 0.5, y: ((scrrenSize?.height ?? 1000) - bezeSize.height) * 0.5, width: bezeSize.width, height: bezeSize.height)
+        let rectSize = NSRect(x: 0, y: 0, width: bezeSize.width, height: bezeSize.height)
         let beze = BezelWindow(cusSzie: rectSize)
         beze.bezeDelegate = self
         return beze
@@ -52,6 +45,9 @@ class APPController: NSObject, NSMenuDelegate, HotKeyDelegate, NSApplicationDele
         button?.image = NSImage(named: "StatusBarButtonImage")
         
         statusItem.menu = mainMenu
+        statusItem.highlightMode = true
+        statusItem.isEnabled = true
+        
         mainMenu.delegate = self
         
         /*let copyTimer = */Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerFired), userInfo: nil, repeats: true)
@@ -115,13 +111,17 @@ class APPController: NSObject, NSMenuDelegate, HotKeyDelegate, NSApplicationDele
             string = clipArray[nowShowIndex].clipString
             string = String.init(format: "index:%i, total:%i\n%@", nowShowIndex + 1, clipArray.count, string)
         }
+ 
+        self.beze.adjustWindowToCenter()
         self.beze.showTextString(showString: string)
         NSApp.activate(ignoringOtherApps: true)
         self.beze.makeKeyAndOrderFront(nil)
     }
     
     func hideBezeWindow() {
-        self.beze.orderOut(nil)
+        if self.beze.isVisible {
+            self.beze.orderOut(nil)
+        }
         nowShowIndex = 0
     }
     
@@ -137,7 +137,7 @@ class APPController: NSObject, NSMenuDelegate, HotKeyDelegate, NSApplicationDele
     func pasteFromStack() {
         self.perform(#selector(appHide), with: nil, afterDelay: 0.2)
         moveClipDateToTop(index: nowShowIndex)
-        self.perform(#selector(fakeCommandV), with: nil, afterDelay: 0.2)
+//        self.perform(#selector(fakeCommandV), with: nil, afterDelay: 0.2)
     }
     
     @objc func fakeCommandV() {

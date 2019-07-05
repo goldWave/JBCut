@@ -29,6 +29,7 @@ class HotKeyCenter: NSObject {
             var hotkeyID = EventHotKeyID()
             
             GetEventParameter(theEvent, EventParamName(kEventParamDirectObject), EventParamType(typeEventHotKeyID), nil, MemoryLayout.size(ofValue: EventHotKeyID()), nil, &hotkeyID)
+            
             switch GetEventKind(theEvent) {
             case EventParamName(kEventHotKeyPressed):
                 let isNext = HotKeyCenter.shared.nextHotkeyId.signature == hotkeyID.signature && HotKeyCenter.shared.nextHotkeyId.id == hotkeyID.id
