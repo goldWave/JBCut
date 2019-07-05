@@ -8,10 +8,19 @@
 
 import Cocoa
 
+protocol BezelWindowDelegate {
+    func metaKeysReleased()
+}
+
 class BezelWindow: NSPanel {
     
     var textField: NSTextField!
+    var bezeDelegate: BezelWindowDelegate?
+
     
+    override var canBecomeKey: Bool {
+        return true
+    }
     
     init(cusSzie: NSRect) {
         super.init(contentRect: cusSzie,
@@ -40,8 +49,16 @@ class BezelWindow: NSPanel {
         textField.stringValue = showString
     }
     
+    override func flagsChanged(with event: NSEvent) {
+        if !(event.modifierFlags.contains(.command)) &&
+            !(event.modifierFlags.contains(.option)) &&
+            !(event.modifierFlags.contains(.control)) &&
+            !(event.modifierFlags.contains(.shift)) &&
+            self.bezeDelegate != nil {
+            self.bezeDelegate?.metaKeysReleased()
+        }
+    }
 }
-
 
 class FlipView: NSView {
     override var isFlipped: Bool {

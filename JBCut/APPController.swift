@@ -7,9 +7,10 @@
 //
 
 import Cocoa
+import Carbon.HIToolbox
 
 @NSApplicationMain
-class APPController: NSObject,NSMenuDelegate, HotKeyDelegate, NSApplicationDelegate {
+class APPController: NSObject, NSMenuDelegate, HotKeyDelegate, NSApplicationDelegate, BezelWindowDelegate {
     
     @IBOutlet weak var mainMenu: NSMenu!
     let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
@@ -17,18 +18,31 @@ class APPController: NSObject,NSMenuDelegate, HotKeyDelegate, NSApplicationDeleg
     var lastChangeCount = 0;
     var nowShowIndex = 0;
     var filePath: String = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)[0]  + "/clipData.plist";
-    
+    let limitClipCount = 20
+    let jbPastBoard = NSPasteboard.general;
     
     lazy var beze: BezelWindow = {
         () -> BezelWindow in
-        let rectSize = NSRect(x: 100, y: 100, width: 200, height: 200)
+        
+//        NSSize windowSize = NSMakeSize(325.0, 325.0);
+//        NSSize screenSize = [[NSScreen mainScreen] frame].size;
+//        NSRect windowFrame = NSMakeRect( (screenSize.width - windowSize.width) / 2,
+//                                         (screenSize.height - windowSize.height) / 3,
+//                                         windowSize.width, windowSize.height );
+        let bezeSize = NSSize(width: 325, height: 325)
+        let scrrenSize = NSScreen.main?.frame.size
+        let rectSize = NSRect(x: ((scrrenSize?.width ?? 1000) - bezeSize.width) * 0.5, y: ((scrrenSize?.height ?? 1000) - bezeSize.height) * 0.5, width: bezeSize.width, height: bezeSize.height)
         let beze = BezelWindow(cusSzie: rectSize)
+        beze.bezeDelegate = self
         return beze
     }()
     
-    
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         print("applicationDidFinishLaunching")
+    }
+    
+    func applicationWillResignActive(_ notification: Notification) {
+        hideBezeWindow()
     }
     
     override func awakeFromNib() {
@@ -58,16 +72,15 @@ class APPController: NSObject,NSMenuDelegate, HotKeyDelegate, NSApplicationDeleg
     
     @objc func timerFired() {
         
-        let board = NSPasteboard.general;
-        let type = board.availableType(from: [.string])
+        let type = jbPastBoard.availableType(from: [.string])
         
         guard type != nil else {
             return;
         }
         
-        let clipString = board.string(forType: NSPasteboard.PasteboardType.string)!
+        let clipString = jbPastBoard.string(forType: NSPasteboard.PasteboardType.string)!
         
-        if lastChangeCount != board.changeCount &&
+        if lastChangeCount != jbPastBoard.changeCount &&
             !clipString.isEmpty &&
             clipArray.first?.clipString != clipString
         {
@@ -75,47 +88,115 @@ class APPController: NSObject,NSMenuDelegate, HotKeyDelegate, NSApplicationDeleg
             data.clipString = clipString
             data.timeStamp = Int(NSDate().timeIntervalSince1970)
             clipArray.insert(data, at: 0)
+            checkIsOutData()
             writeDateToFile()
         }
-        lastChangeCount = board.changeCount
+        lastChangeCount = jbPastBoard.changeCount
         
+    }
+    
+    func checkIsOutData() {
+        if clipArray.count > limitClipCount {
+            clipArray.removeSubrange(limitClipCount..<clipArray.count)
+        }
     }
     
     func menuWillOpen(_ menu: NSMenu) {
         print("menu will open")
     }
+    
+    func createShowWindow() {
         
-    func createShowWindow(isNext: Bool) {
-
-        var string: String = "无数据"
-        if nowShowIndex < 0 {
-            print()
+        if self.beze.isVisible {
+            return
         }
+        var string: String = "无数据"
+        if clipArray.count > nowShowIndex && nowShowIndex >= 0 {
+            string = clipArray[nowShowIndex].clipString
+            string = String.init(format: "index:%i, total:%i\n%@", nowShowIndex + 1, clipArray.count, string)
+        }
+        self.beze.showTextString(showString: string)
+        NSApp.activate(ignoringOtherApps: true)
+        self.beze.makeKeyAndOrderFront(nil)
+    }
+    
+    func hideBezeWindow() {
+        self.beze.orderOut(nil)
+        nowShowIndex = 0
+    }
+    
+    func writeDateToFile() {
+        NSKeyedArchiver.archiveRootObject(clipArray, toFile: filePath)
+    }
+    
+    @objc func appHide() {
+        hideBezeWindow()
+        NSApp.hide(self)
+    }
+    
+    func pasteFromStack() {
+        self.perform(#selector(appHide), with: nil, afterDelay: 0.2)
+        moveClipDateToTop(index: nowShowIndex)
+        self.perform(#selector(fakeCommandV), with: nil, afterDelay: 0.2)
+    }
+    
+    @objc func fakeCommandV() {
+        let source = CGEventSource(stateID: .combinedSessionState)
+        //disabel local keyboard click
+        source?.setLocalEventsFilterDuringSuppressionState([.permitLocalKeyboardEvents, .permitSystemDefinedEvents], state: .eventSuppressionStateSuppressionInterval)
+        //press command + v
+        let keyDown = CGEvent(keyboardEventSource: source, virtualKey: CGKeyCode(kVK_ANSI_V), keyDown: true)
+        keyDown?.flags = .maskCommand
+        //release command + v
+        let keyUp = CGEvent(keyboardEventSource: source, virtualKey: CGKeyCode(kVK_ANSI_V), keyDown: false)
+        keyUp?.flags = .maskCommand
+        //post paste command
+        keyDown?.post(tap: .cgAnnotatedSessionEventTap)
+        keyUp?.post(tap: .cgAnnotatedSessionEventTap)
+    }
+    
+    func moveClipDateToTop(index: Int) {
+        guard clipArray.count > index else {return}
+        let selectData = clipArray.remove(at: index)
+        clipArray.insert(selectData, at: 0)
         
+        jbPastBoard.declareTypes([NSPasteboard.PasteboardType.string], owner: nil)
+        jbPastBoard.setString(clipArray[0].clipString, forType: NSPasteboard.PasteboardType.string)
+        writeDateToFile()
+    }
+    
+    //MARK: - HotKeyDelegate
+    func hotKeyCliked(isNext: Bool) {
+        if self.beze.isVisible {
+            self.stackDownOrUp(isNext: isNext)
+        } else {
+           self.createShowWindow()
+        }
+    }
+    
+    func stackDownOrUp(isNext: Bool)  {
+        var string: String = "无数据"
+        if !self.beze.isVisible {
+            self.createShowWindow()
+            return
+        }
+        nowShowIndex += isNext ? 1 : -1
+        //protect the index out of range
         nowShowIndex = nowShowIndex >= clipArray.count ? (clipArray.count - 1) : nowShowIndex
         nowShowIndex = nowShowIndex < 0 ? 0 : nowShowIndex
         
         if clipArray.count > nowShowIndex && nowShowIndex >= 0 {
             string = clipArray[nowShowIndex].clipString
             string =  String.init(format: "index:%i, total:%i\n%@", nowShowIndex + 1, clipArray.count, string)
-            
-            print(nowShowIndex)
-            nowShowIndex += isNext ? 1 : -1
-            print(nowShowIndex)
-            print("\n\n")
         }
         self.beze.showTextString(showString: string)
-        NSApp.activate(ignoringOtherApps: true)
-        
-        self.beze.makeKeyAndOrderFront(nil)
     }
     
-    func hotKeyCliked(isNext: Bool) {
-        self.createShowWindow(isNext: isNext);
-    }
-
-    func writeDateToFile() {
-        NSKeyedArchiver.archiveRootObject(clipArray, toFile: filePath)
+    //MARK: - BezelWindowDelegate
+    func metaKeysReleased() {
+        if self.beze.isVisible {
+          pasteFromStack()
+        }
     }
     
 }

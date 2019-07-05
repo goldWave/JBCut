@@ -29,11 +29,6 @@ class HotKeyCenter: NSObject {
             var hotkeyID = EventHotKeyID()
             
             GetEventParameter(theEvent, EventParamName(kEventParamDirectObject), EventParamType(typeEventHotKeyID), nil, MemoryLayout.size(ofValue: EventHotKeyID()), nil, &hotkeyID)
-            
-            
-//            print(hotkeyID)
-//            print(GetEventKind(theEvent))
-            
             switch GetEventKind(theEvent) {
             case EventParamName(kEventHotKeyPressed):
                 let isNext = HotKeyCenter.shared.nextHotkeyId.signature == hotkeyID.signature && HotKeyCenter.shared.nextHotkeyId.id == hotkeyID.id
@@ -49,9 +44,5 @@ class HotKeyCenter: NSObject {
         
         RegisterEventHotKey(UInt32(kVK_ANSI_K), UInt32(cmdKey|shiftKey), preHotkeyId, GetApplicationEventTarget(), OptionBits(0), &hotkey)
         RegisterEventHotKey(UInt32(kVK_ANSI_L), UInt32(cmdKey|shiftKey), nextHotkeyId, GetApplicationEventTarget(), OptionBits(0), &hotkey)
-    }
-    
-    func showWindow() {
-        print(1111)
     }
 }
