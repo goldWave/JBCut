@@ -14,7 +14,10 @@ protocol BezelWindowDelegate {
 
 class BezelWindow: NSPanel {
     
-    private var textField: RoundRexTextfield!
+    private var contentTextField: RoundRexTextfield!
+    private var indexTextField: RoundRexTextfield!
+    private var timeTextField: RoundRexTextfield!
+    private var iconImageView: NSImageView!
     var bezeDelegate: BezelWindowDelegate?
     
     
@@ -35,23 +38,57 @@ class BezelWindow: NSPanel {
         self.isOpaque = false
         self.hasShadow = false
         self.isMovableByWindowBackground = false
-        self.backgroundColor = sizeBezelBackground(radius: 25, alpha: 0.85, bgSize: NSSize(width: 350, height: 350))
+        self.backgroundColor = sizeBezelBackground(radius: 25, alpha: 0.85, bgSize: NSSize(width: cusSzie.width, height: cusSzie.height))
         self.collectionBehavior = NSWindow.CollectionBehavior.canJoinAllSpaces
         
-        textField = RoundRexTextfield.init(frame: NSMakeRect(12, 12, self.frame.width - 24, 8 * 16))
-        textField.textColor = NSColor.white
-        textField.isEnabled = false
-        textField.isSelectable = false
-        textField.backgroundColor = NSColor.init(white: 0.1, alpha: 0.45)
-        textField.drawsBackground = false;
-        textField.alignment = NSTextAlignment.center
-        textField.isBordered = false
-        
-        self.contentView?.addSubview(textField)
+        setupSubView()
+       
     }
     
-    public func showTextString(showString: String) {
-        textField.stringValue = showString
+    func setupSubView() {
+        contentTextField = RoundRexTextfield.init(frame: NSMakeRect(12, 12, self.frame.width - 24, 8 * 16))
+        contentTextField.textColor = NSColor.white
+        contentTextField.isEnabled = false
+        contentTextField.isSelectable = false
+        contentTextField.backgroundColor = NSColor.init(white: 0.1, alpha: 0.45)
+        contentTextField.drawsBackground = false;
+        contentTextField.alignment = NSTextAlignment.center
+        contentTextField.isBordered = false
+        
+        
+        iconImageView = NSImageView.init(image: NSImage(named: "big_icon") ?? NSImage.init())
+        iconImageView.frame = NSRect(x: 20, y: NSMaxY(contentTextField.frame) + 30, width: 70, height: 70)
+        
+        
+        timeTextField = RoundRexTextfield.init(frame: NSMakeRect(NSMaxX(iconImageView.frame) + 20 , NSMaxY(iconImageView.frame) - 25, self.frame.width - NSMaxX(iconImageView.frame) - 2 * 20, 18))
+        timeTextField.textColor = NSColor.white
+        timeTextField.isEnabled = false
+        timeTextField.isSelectable = false
+        timeTextField.backgroundColor = NSColor.init(white: 0.1, alpha: 0.45)
+        timeTextField.drawsBackground = false;
+        timeTextField.alignment = NSTextAlignment.center
+        timeTextField.isBordered = false
+        timeTextField.stringValue = "2018-989-56"
+        
+        indexTextField = RoundRexTextfield.init(frame: NSMakeRect(NSMinX(timeTextField.frame) , NSMinY(timeTextField.frame) - 35, NSWidth(timeTextField.frame), NSHeight(timeTextField.frame)))
+        indexTextField.textColor = NSColor.white
+        indexTextField.isEnabled = false
+        indexTextField.isSelectable = false
+        indexTextField.backgroundColor = NSColor.init(white: 0.1, alpha: 0.45)
+        indexTextField.drawsBackground = false;
+        indexTextField.alignment = NSTextAlignment.center
+        indexTextField.isBordered = false
+        
+        self.contentView?.addSubview(contentTextField)
+        self.contentView?.addSubview(indexTextField)
+        self.contentView?.addSubview(iconImageView)
+        self.contentView?.addSubview(timeTextField)
+    }
+    
+    public func setCurrentData(data: ClipData, indexString: String) {
+        contentTextField.stringValue = data.clipString
+        indexTextField.stringValue = indexString
+        timeTextField.stringValue = data.timeStamp.timeFormateChange()
     }
     
     override func flagsChanged(with event: NSEvent) {
@@ -68,7 +105,7 @@ class BezelWindow: NSPanel {
         let bgImage: NSImage = NSImage.init(size: bgSize)
         bgImage.lockFocus()
         
-        let dummyRect = NSRect(x: 0, y: 0, width: bgSize.width-radius, height: bgSize.height-radius)
+        let dummyRect = NSRect(x: 0, y: 0, width: bgSize.width, height: bgSize.height)
         let roundedRec = NSBezierPath().getBeizerPath(aRect: dummyRect, radius: radius)
         NSColor.init(white: 0.2, alpha: alpha).set()
         roundedRec.fill()
@@ -98,5 +135,15 @@ extension NSBezierPath {
         
         path.close()
         return path;
+    }
+}
+
+extension Int {
+    func timeFormateChange() -> String {
+        let date = Date(timeIntervalSince1970: TimeInterval(self))
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let nowDate = dateFormatter.string(from: date)
+        return nowDate
     }
 }

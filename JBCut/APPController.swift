@@ -23,7 +23,7 @@ class APPController: NSObject, NSMenuDelegate, HotKeyDelegate, NSApplicationDele
     
     lazy var beze: BezelWindow = {
         () -> BezelWindow in
-        let bezeSize = NSSize(width: 325, height: 325)
+        let bezeSize = NSSize(width: 325, height: 270)
         let rectSize = NSRect(x: 0, y: 0, width: bezeSize.width, height: bezeSize.height)
         let beze = BezelWindow(cusSzie: rectSize)
         beze.bezeDelegate = self
@@ -42,7 +42,7 @@ class APPController: NSObject, NSMenuDelegate, HotKeyDelegate, NSApplicationDele
         print(filePath)
         
         let button = statusItem.button
-        button?.image = NSImage(named: "StatusBarButtonImage")
+        button?.image = NSImage(named: "menu_image")
         
         statusItem.menu = mainMenu
         statusItem.highlightMode = true
@@ -73,8 +73,7 @@ class APPController: NSObject, NSMenuDelegate, HotKeyDelegate, NSApplicationDele
         guard type != nil else {
             return;
         }
-        
-        let clipString = jbPastBoard.string(forType: NSPasteboard.PasteboardType.string)!
+        let clipString = jbPastBoard.string(forType: NSPasteboard.PasteboardType.string) ?? ""
         
         if lastChangeCount != jbPastBoard.changeCount &&
             !clipString.isEmpty &&
@@ -106,14 +105,13 @@ class APPController: NSObject, NSMenuDelegate, HotKeyDelegate, NSApplicationDele
         if self.beze.isVisible {
             return
         }
-        var string: String = "无数据"
         if clipArray.count > nowShowIndex && nowShowIndex >= 0 {
-            string = clipArray[nowShowIndex].clipString
-            string = String.init(format: "index:%i, total:%i\n%@", nowShowIndex + 1, clipArray.count, string)
+            let indexString = String.init(format: "%i of %i", nowShowIndex + 1, clipArray.count)
+            self.beze.setCurrentData(data: clipArray[nowShowIndex], indexString: indexString)
         }
  
         self.beze.adjustWindowToCenter()
-        self.beze.showTextString(showString: string)
+
         NSApp.activate(ignoringOtherApps: true)
         self.beze.makeKeyAndOrderFront(nil)
     }
@@ -134,10 +132,17 @@ class APPController: NSObject, NSMenuDelegate, HotKeyDelegate, NSApplicationDele
         NSApp.hide(self)
     }
     
+    @IBAction func clearAllData(_ sender: Any) {
+        self.clipArray.removeAll()
+        writeDateToFile()
+    }
+    
+    
+    //MARK: - hotkey cliked
     func pasteFromStack() {
         self.perform(#selector(appHide), with: nil, afterDelay: 0.2)
         moveClipDateToTop(index: nowShowIndex)
-//        self.perform(#selector(fakeCommandV), with: nil, afterDelay: 0.2)
+        self.perform(#selector(fakeCommandV), with: nil, afterDelay: 0.2)
     }
     
     @objc func fakeCommandV() {
@@ -175,7 +180,6 @@ class APPController: NSObject, NSMenuDelegate, HotKeyDelegate, NSApplicationDele
     }
     
     func stackDownOrUp(isNext: Bool)  {
-        var string: String = "无数据"
         if !self.beze.isVisible {
             self.createShowWindow()
             return
@@ -186,10 +190,12 @@ class APPController: NSObject, NSMenuDelegate, HotKeyDelegate, NSApplicationDele
         nowShowIndex = nowShowIndex < 0 ? 0 : nowShowIndex
         
         if clipArray.count > nowShowIndex && nowShowIndex >= 0 {
-            string = clipArray[nowShowIndex].clipString
-            string =  String.init(format: "index:%i, total:%i\n%@", nowShowIndex + 1, clipArray.count, string)
+//            string = clipArray[nowShowIndex].clipString
+//            string =  String.init(format: "index:%i, total:%i\n%@", nowShowIndex + 1, clipArray.count, string)
+            let indexString = String.init(format: "%i of %i", nowShowIndex + 1, clipArray.count)
+            self.beze.setCurrentData(data: clipArray[nowShowIndex], indexString: indexString)
         }
-        self.beze.showTextString(showString: string)
+
     }
     
     //MARK: - BezelWindowDelegate
