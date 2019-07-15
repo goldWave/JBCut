@@ -16,15 +16,19 @@
                 </customObject>
                 <menu id="gGo-Wa-lfU">
                     <items>
-                        <menuItem title="Item 1" id="JXg-gI-m6r">
-                            <modifierMask key="keyEquivalentModifierMask"/>
-                        </menuItem>
+                        <menuItem isSeparatorItem="YES" id="ohd-CF-d7Q"/>
                         <menuItem title="Clear All" id="R9N-ww-9Y6">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
                                 <action selector="clearAllData:" target="Voe-Tx-rLC" id="sn7-0j-Oks"/>
                             </connections>
                         </menuItem>
+                        <menuItem title="Preferences..." keyEquivalent="," id="JXg-gI-m6r">
+                            <connections>
+                                <action selector="preferencesClicked:" target="Voe-Tx-rLC" id="4hY-91-Gdf"/>
+                            </connections>
+                        </menuItem>
+                        <menuItem isSeparatorItem="YES" id="DrQ-pm-mii"/>
                         <menuItem title="Quit Application" keyEquivalent="q" id="ZaB-N1-1En">
                             <connections>
                                 <action selector="quitButtonClick:" target="Voe-Tx-rLC" id="3XV-FL-60g"/>

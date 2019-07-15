@@ -8,8 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		584D3B0B22CC8C1B00F2B0D3 /* BezelWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584D3B0A22CC8C1B00F2B0D3 /* BezelWindow.swift */; };
+		5873CCBB22D5C47B00C266C8 /* NSBezierPath+background.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5873CCBA22D5C47B00C266C8 /* NSBezierPath+background.swift */; };
 		58870FEC22CDAA9100496E44 /* HotKeyCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58870FEB22CDAA9100496E44 /* HotKeyCenter.swift */; };
 		58870FEE22CDCF4400496E44 /* ClipData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58870FED22CDCF4400496E44 /* ClipData.swift */; };
+		58A0998B22D890AD00159217 /* GlobalVariable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58A0998A22D890AD00159217 /* GlobalVariable.swift */; };
 		58B1AF0822CB332F00C89530 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 58B1AF0722CB332F00C89530 /* Assets.xcassets */; };
 		58B1AF0B22CB332F00C89530 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 58B1AF0922CB332F00C89530 /* Main.storyboard */; };
 		58B1AF1622CB3C1000C89530 /* APPController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B1AF1522CB3C1000C89530 /* APPController.swift */; };
@@ -18,8 +20,10 @@
 
 /* Begin PBXFileReference section */
 		584D3B0A22CC8C1B00F2B0D3 /* BezelWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BezelWindow.swift; sourceTree = "<group>"; };
+		5873CCBA22D5C47B00C266C8 /* NSBezierPath+background.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSBezierPath+background.swift"; sourceTree = "<group>"; };
 		58870FEB22CDAA9100496E44 /* HotKeyCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotKeyCenter.swift; sourceTree = "<group>"; };
 		58870FED22CDCF4400496E44 /* ClipData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipData.swift; sourceTree = "<group>"; };
+		58A0998A22D890AD00159217 /* GlobalVariable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalVariable.swift; sourceTree = "<group>"; };
 		58B1AF0222CB332E00C89530 /* JBCut.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JBCut.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		58B1AF0722CB332F00C89530 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		58B1AF0A22CB332F00C89530 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -40,6 +44,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5873CCB822D5C3B600C266C8 /* BezelWindow */ = {
+			isa = PBXGroup;
+			children = (
+				584D3B0A22CC8C1B00F2B0D3 /* BezelWindow.swift */,
+				58EB30D122D2DC630056DBB2 /* RoundRexTextfield.swift */,
+				5873CCBA22D5C47B00C266C8 /* NSBezierPath+background.swift */,
+			);
+			path = BezelWindow;
+			sourceTree = "<group>";
+		};
+		5873CCB922D5C41700C266C8 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				58B1AF0722CB332F00C89530 /* Assets.xcassets */,
+				58B1AF0922CB332F00C89530 /* Main.storyboard */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		58B1AEF922CB332E00C89530 = {
 			isa = PBXGroup;
 			children = (
@@ -59,15 +82,14 @@
 		58B1AF0422CB332E00C89530 /* JBCut */ = {
 			isa = PBXGroup;
 			children = (
-				58B1AF1522CB3C1000C89530 /* APPController.swift */,
-				584D3B0A22CC8C1B00F2B0D3 /* BezelWindow.swift */,
-				58EB30D122D2DC630056DBB2 /* RoundRexTextfield.swift */,
-				58870FEB22CDAA9100496E44 /* HotKeyCenter.swift */,
-				58870FED22CDCF4400496E44 /* ClipData.swift */,
-				58B1AF0722CB332F00C89530 /* Assets.xcassets */,
-				58B1AF0922CB332F00C89530 /* Main.storyboard */,
 				58B1AF0C22CB332F00C89530 /* Info.plist */,
 				58B1AF0D22CB332F00C89530 /* JBCut.entitlements */,
+				58B1AF1522CB3C1000C89530 /* APPController.swift */,
+				58870FEB22CDAA9100496E44 /* HotKeyCenter.swift */,
+				58870FED22CDCF4400496E44 /* ClipData.swift */,
+				58A0998A22D890AD00159217 /* GlobalVariable.swift */,
+				5873CCB822D5C3B600C266C8 /* BezelWindow */,
+				5873CCB922D5C41700C266C8 /* Resources */,
 			);
 			path = JBCut;
 			sourceTree = "<group>";
@@ -143,6 +165,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				58A0998B22D890AD00159217 /* GlobalVariable.swift in Sources */,
+				5873CCBB22D5C47B00C266C8 /* NSBezierPath+background.swift in Sources */,
 				58870FEE22CDCF4400496E44 /* ClipData.swift in Sources */,
 				584D3B0B22CC8C1B00F2B0D3 /* BezelWindow.swift in Sources */,
 				58EB30D222D2DC630056DBB2 /* RoundRexTextfield.swift in Sources */,

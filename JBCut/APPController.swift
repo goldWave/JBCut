@@ -9,17 +9,20 @@
 import Cocoa
 import Carbon.HIToolbox
 
+
+
 @NSApplicationMain
 class APPController: NSObject, NSMenuDelegate, HotKeyDelegate, NSApplicationDelegate, BezelWindowDelegate {
     
     @IBOutlet weak var mainMenu: NSMenu!
-    let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
-    var clipArray = [ClipData]();
-    var lastChangeCount = 0;
-    var nowShowIndex = 0;
-    var filePath: String = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)[0]  + "/clipData.plist";
-    let limitClipCount = 20
-    let jbPastBoard = NSPasteboard.general;
+    private let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
+    private var clipArray = [ClipData]();
+    private var lastChangeCount = 0;
+    private var nowShowIndex = 0;
+    private var filePath: String = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)[0]  + "/clipData.plist";
+    private let limitClipCount = 20
+    private let jbPastBoard = NSPasteboard.general;
+    private var isMenuOpened = false
     
     lazy var beze: BezelWindow = {
         () -> BezelWindow in
@@ -54,12 +57,11 @@ class APPController: NSObject, NSMenuDelegate, HotKeyDelegate, NSApplicationDele
         
         HotKeyCenter.shared.registerHotKey()
         HotKeyCenter.shared.delegate = self
-        
+        GlobalVariable.shared.readDataFronUserDefault()
         if let unarchivedData = NSKeyedUnarchiver.unarchiveObject(withFile: filePath) as? [ClipData] {
             clipArray = unarchivedData
         }
-        
-        print("")
+        updateClipMenu()
     }
     
     @IBAction func quitButtonClick(_ sender: Any) {
@@ -79,12 +81,15 @@ class APPController: NSObject, NSMenuDelegate, HotKeyDelegate, NSApplicationDele
             !clipString.isEmpty &&
             clipArray.first?.clipString != clipString
         {
+            print("add new clip data")
             let data = ClipData.init()
             data.clipString = clipString
             data.timeStamp = Int(NSDate().timeIntervalSince1970)
             clipArray.insert(data, at: 0)
             checkIsOutData()
             writeDateToFile()
+            
+            if isMenuOpened {updateClipMenu()}
         }
         lastChangeCount = jbPastBoard.changeCount
         
@@ -96,10 +101,6 @@ class APPController: NSObject, NSMenuDelegate, HotKeyDelegate, NSApplicationDele
         }
     }
     
-    func menuWillOpen(_ menu: NSMenu) {
-        print("menu will open")
-    }
-    
     func createShowWindow() {
         
         if self.beze.isVisible {
@@ -109,9 +110,9 @@ class APPController: NSObject, NSMenuDelegate, HotKeyDelegate, NSApplicationDele
             let indexString = String.init(format: "%i of %i", nowShowIndex + 1, clipArray.count)
             self.beze.setCurrentData(data: clipArray[nowShowIndex], indexString: indexString)
         }
- 
+        
         self.beze.adjustWindowToCenter()
-
+        
         NSApp.activate(ignoringOtherApps: true)
         self.beze.makeKeyAndOrderFront(nil)
     }
@@ -132,11 +133,61 @@ class APPController: NSObject, NSMenuDelegate, HotKeyDelegate, NSApplicationDele
         NSApp.hide(self)
     }
     
+    func updateClipMenu() {
+        print("updateClipMenu")
+        let menuItems = mainMenu.items
+        
+        for item in menuItems {
+            if item.isSeparatorItem {
+                break;
+            } else  {
+                mainMenu.removeItem(item)
+            }
+        }
+        
+        let reveredArrary = getMenuArray()
+        for (index, data) in reveredArrary.enumerated() {
+            
+            var keyEquivalent: String = ""
+            if reveredArrary.count > 10 {
+                if (reveredArrary.count - index - 1) >= 10 {
+                    keyEquivalent = ""
+                } else {
+                    keyEquivalent = String(reveredArrary.count - index - 1)
+                }
+            } else {
+                keyEquivalent = String(reveredArrary.count - index - 1)
+            }
+            
+            let item = NSMenuItem.init(title: data.displayMenuString, action: #selector(processMenuClippingSelection(sender:)), keyEquivalent: keyEquivalent)
+            
+            item.target = self
+            item.isEnabled = true
+            
+            mainMenu.insertItem(item, at: 0) 
+        }
+    }
+    
+    func getMenuArray() -> [ClipData] {
+        let currentCount = min(clipArray.count, GlobalVariable.shared.clipMenuCount)
+        return clipArray[0..<currentCount].reversed()
+    }
+    
+    //MARK: - menu clicked
+    @objc func processMenuClippingSelection(sender: NSMenuItem) {
+        nowShowIndex = sender.menu?.index(of: sender) ?? 0
+        self.perform(#selector(appHide), with: nil, afterDelay: 0)
+        moveClipDateToTop(index: nowShowIndex)
+        self.perform(#selector(fakeCommandV), with: nil, afterDelay: 0.2)
+    }
+    
     @IBAction func clearAllData(_ sender: Any) {
         self.clipArray.removeAll()
         writeDateToFile()
     }
     
+    @IBAction func preferencesClicked(_ sender: Any) {
+    }
     
     //MARK: - hotkey cliked
     func pasteFromStack() {
@@ -175,7 +226,7 @@ class APPController: NSObject, NSMenuDelegate, HotKeyDelegate, NSApplicationDele
         if self.beze.isVisible {
             self.stackDownOrUp(isNext: isNext)
         } else {
-           self.createShowWindow()
+            self.createShowWindow()
         }
     }
     
@@ -190,19 +241,29 @@ class APPController: NSObject, NSMenuDelegate, HotKeyDelegate, NSApplicationDele
         nowShowIndex = nowShowIndex < 0 ? 0 : nowShowIndex
         
         if clipArray.count > nowShowIndex && nowShowIndex >= 0 {
-//            string = clipArray[nowShowIndex].clipString
-//            string =  String.init(format: "index:%i, total:%i\n%@", nowShowIndex + 1, clipArray.count, string)
             let indexString = String.init(format: "%i of %i", nowShowIndex + 1, clipArray.count)
             self.beze.setCurrentData(data: clipArray[nowShowIndex], indexString: indexString)
         }
-
+        
     }
     
     //MARK: - BezelWindowDelegate
     func metaKeysReleased() {
         if self.beze.isVisible {
-          pasteFromStack()
+            pasteFromStack()
         }
     }
     
+    //MARK: - NSMenuDelegate
+    func menuWillOpen(_ menu: NSMenu) {
+        print("menu will open")
+        timerFired()
+        updateClipMenu()
+        isMenuOpened = true
+    }
+    
+    func menuDidClose(_ menu: NSMenu) {
+        print("menu did open")
+        isMenuOpened = false
+    }
 }

@@ -20,7 +20,6 @@ class HotKeyCenter: NSObject {
     var delegate : HotKeyDelegate?
     let nextHotkeyId = EventHotKeyID(signature: 1, id: 1)
     let preHotkeyId = EventHotKeyID(signature: 2, id: 2)
-
     
     public func registerHotKey() {
         
