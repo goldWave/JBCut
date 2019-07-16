@@ -16,13 +16,14 @@ class APPController: NSObject, NSMenuDelegate, HotKeyDelegate, NSApplicationDele
     
     @IBOutlet weak var mainMenu: NSMenu!
     private let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
-    private var clipArray = [ClipData]();
-    private var lastChangeCount = 0;
-    private var nowShowIndex = 0;
-    private var filePath: String = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)[0]  + "/clipData.plist";
+    private var clipArray = [ClipData]()
+    private var lastChangeCount = 0
+    private var nowShowIndex = 0
+    private var filePath: String = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)[0]  + "/clipData.plist"
     private let limitClipCount = 20
-    private let jbPastBoard = NSPasteboard.general;
+    private let jbPastBoard = NSPasteboard.general
     private var isMenuOpened = false
+    private var prefsWindwoController = PreferencesWindowController.init()
     
     lazy var beze: BezelWindow = {
         () -> BezelWindow in
@@ -187,6 +188,9 @@ class APPController: NSObject, NSMenuDelegate, HotKeyDelegate, NSApplicationDele
     }
     
     @IBAction func preferencesClicked(_ sender: Any) {
+        prefsWindwoController.window?.collectionBehavior = NSWindow.CollectionBehavior.canJoinAllSpaces
+        NSApp.activate(ignoringOtherApps: true)
+        prefsWindwoController.window?.makeKeyAndOrderFront(self)
     }
     
     //MARK: - hotkey cliked

@@ -12,6 +12,8 @@
 		58870FEC22CDAA9100496E44 /* HotKeyCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58870FEB22CDAA9100496E44 /* HotKeyCenter.swift */; };
 		58870FEE22CDCF4400496E44 /* ClipData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58870FED22CDCF4400496E44 /* ClipData.swift */; };
 		58A0998B22D890AD00159217 /* GlobalVariable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58A0998A22D890AD00159217 /* GlobalVariable.swift */; };
+		58A0999222DC56E500159217 /* PreferencesWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58A0999022DC56E500159217 /* PreferencesWindowController.swift */; };
+		58A0999322DC56E500159217 /* PreferencesWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58A0999122DC56E500159217 /* PreferencesWindowController.xib */; };
 		58B1AF0822CB332F00C89530 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 58B1AF0722CB332F00C89530 /* Assets.xcassets */; };
 		58B1AF0B22CB332F00C89530 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 58B1AF0922CB332F00C89530 /* Main.storyboard */; };
 		58B1AF1622CB3C1000C89530 /* APPController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B1AF1522CB3C1000C89530 /* APPController.swift */; };
@@ -24,6 +26,8 @@
 		58870FEB22CDAA9100496E44 /* HotKeyCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotKeyCenter.swift; sourceTree = "<group>"; };
 		58870FED22CDCF4400496E44 /* ClipData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipData.swift; sourceTree = "<group>"; };
 		58A0998A22D890AD00159217 /* GlobalVariable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalVariable.swift; sourceTree = "<group>"; };
+		58A0999022DC56E500159217 /* PreferencesWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesWindowController.swift; sourceTree = "<group>"; };
+		58A0999122DC56E500159217 /* PreferencesWindowController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PreferencesWindowController.xib; sourceTree = "<group>"; };
 		58B1AF0222CB332E00C89530 /* JBCut.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JBCut.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		58B1AF0722CB332F00C89530 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		58B1AF0A22CB332F00C89530 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -88,6 +92,8 @@
 				58870FEB22CDAA9100496E44 /* HotKeyCenter.swift */,
 				58870FED22CDCF4400496E44 /* ClipData.swift */,
 				58A0998A22D890AD00159217 /* GlobalVariable.swift */,
+				58A0999022DC56E500159217 /* PreferencesWindowController.swift */,
+				58A0999122DC56E500159217 /* PreferencesWindowController.xib */,
 				5873CCB822D5C3B600C266C8 /* BezelWindow */,
 				5873CCB922D5C41700C266C8 /* Resources */,
 			);
@@ -153,6 +159,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				58A0999322DC56E500159217 /* PreferencesWindowController.xib in Resources */,
 				58B1AF0822CB332F00C89530 /* Assets.xcassets in Resources */,
 				58B1AF0B22CB332F00C89530 /* Main.storyboard in Resources */,
 			);
@@ -171,6 +178,7 @@
 				584D3B0B22CC8C1B00F2B0D3 /* BezelWindow.swift in Sources */,
 				58EB30D222D2DC630056DBB2 /* RoundRexTextfield.swift in Sources */,
 				58870FEC22CDAA9100496E44 /* HotKeyCenter.swift in Sources */,
+				58A0999222DC56E500159217 /* PreferencesWindowController.swift in Sources */,
 				58B1AF1622CB3C1000C89530 /* APPController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
