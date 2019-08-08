@@ -14,6 +14,9 @@
 		58A0998B22D890AD00159217 /* GlobalVariable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58A0998A22D890AD00159217 /* GlobalVariable.swift */; };
 		58A0999222DC56E500159217 /* PreferencesWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58A0999022DC56E500159217 /* PreferencesWindowController.swift */; };
 		58A0999322DC56E500159217 /* PreferencesWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58A0999122DC56E500159217 /* PreferencesWindowController.xib */; };
+		58A5EA4A22FC127100E92314 /* net.sf.jumpcut.preferences.hotkey.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 58A5EA4722FC127000E92314 /* net.sf.jumpcut.preferences.hotkey.tiff */; };
+		58A5EA4B22FC127100E92314 /* net.sf.jumpcut.preferences.appearance.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 58A5EA4822FC127100E92314 /* net.sf.jumpcut.preferences.appearance.tiff */; };
+		58A5EA4C22FC127100E92314 /* net.sf.jumpcut.preferences.general.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 58A5EA4922FC127100E92314 /* net.sf.jumpcut.preferences.general.tiff */; };
 		58B1AF0822CB332F00C89530 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 58B1AF0722CB332F00C89530 /* Assets.xcassets */; };
 		58B1AF0B22CB332F00C89530 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 58B1AF0922CB332F00C89530 /* Main.storyboard */; };
 		58B1AF1622CB3C1000C89530 /* APPController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B1AF1522CB3C1000C89530 /* APPController.swift */; };
@@ -28,6 +31,9 @@
 		58A0998A22D890AD00159217 /* GlobalVariable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalVariable.swift; sourceTree = "<group>"; };
 		58A0999022DC56E500159217 /* PreferencesWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesWindowController.swift; sourceTree = "<group>"; };
 		58A0999122DC56E500159217 /* PreferencesWindowController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PreferencesWindowController.xib; sourceTree = "<group>"; };
+		58A5EA4722FC127000E92314 /* net.sf.jumpcut.preferences.hotkey.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = net.sf.jumpcut.preferences.hotkey.tiff; sourceTree = "<group>"; };
+		58A5EA4822FC127100E92314 /* net.sf.jumpcut.preferences.appearance.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = net.sf.jumpcut.preferences.appearance.tiff; sourceTree = "<group>"; };
+		58A5EA4922FC127100E92314 /* net.sf.jumpcut.preferences.general.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = net.sf.jumpcut.preferences.general.tiff; sourceTree = "<group>"; };
 		58B1AF0222CB332E00C89530 /* JBCut.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JBCut.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		58B1AF0722CB332F00C89530 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		58B1AF0A22CB332F00C89530 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -61,6 +67,9 @@
 		5873CCB922D5C41700C266C8 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				58A5EA4822FC127100E92314 /* net.sf.jumpcut.preferences.appearance.tiff */,
+				58A5EA4922FC127100E92314 /* net.sf.jumpcut.preferences.general.tiff */,
+				58A5EA4722FC127000E92314 /* net.sf.jumpcut.preferences.hotkey.tiff */,
 				58B1AF0722CB332F00C89530 /* Assets.xcassets */,
 				58B1AF0922CB332F00C89530 /* Main.storyboard */,
 			);
@@ -133,6 +142,11 @@
 					58B1AF0122CB332E00C89530 = {
 						CreatedOnToolsVersion = 11.0;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
@@ -160,8 +174,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				58A0999322DC56E500159217 /* PreferencesWindowController.xib in Resources */,
+				58A5EA4B22FC127100E92314 /* net.sf.jumpcut.preferences.appearance.tiff in Resources */,
 				58B1AF0822CB332F00C89530 /* Assets.xcassets in Resources */,
 				58B1AF0B22CB332F00C89530 /* Main.storyboard in Resources */,
+				58A5EA4C22FC127100E92314 /* net.sf.jumpcut.preferences.general.tiff in Resources */,
+				58A5EA4A22FC127100E92314 /* net.sf.jumpcut.preferences.hotkey.tiff in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -313,7 +330,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = JBCut/JBCut.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = K9UP278937;
@@ -331,7 +347,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = JBCut/JBCut.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = K9UP278937;

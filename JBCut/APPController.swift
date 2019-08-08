@@ -34,15 +34,20 @@ class APPController: NSObject, NSMenuDelegate, HotKeyDelegate, NSApplicationDele
         return beze
     }()
     
+    
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         print("applicationDidFinishLaunching")
     }
-    
+
     func applicationWillResignActive(_ notification: Notification) {
         hideBezeWindow()
     }
     
     override func awakeFromNib() {
+        if NSRunningApplication.runningApplications(withBundleIdentifier: Bundle.main.bundleIdentifier ?? "").count > 1 {
+            NSApp.terminate(nil)
+            return;
+        }
         print(filePath)
         
         let button = statusItem.button
@@ -63,6 +68,8 @@ class APPController: NSObject, NSMenuDelegate, HotKeyDelegate, NSApplicationDele
             clipArray = unarchivedData
         }
         updateClipMenu()
+        
+        preferencesClicked(statusItem)
     }
     
     @IBAction func quitButtonClick(_ sender: Any) {
