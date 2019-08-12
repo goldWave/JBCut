@@ -15,7 +15,7 @@ protocol HotKeyDelegate {
 }
 
 class HotKeyCenter: NSObject {
-    
+
     public static let shared = HotKeyCenter()
     var delegate : HotKeyDelegate?
     let nextHotkeyId = EventHotKeyID(signature: 1, id: 1)

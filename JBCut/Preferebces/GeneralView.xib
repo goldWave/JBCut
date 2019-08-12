@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="GeneralViewController" customModule="JBCut" customModuleProvider="target">
+            <connections>
+                <outlet property="displayLabel" destination="qtG-CC-3U9" id="BbM-XE-BBn"/>
+                <outlet property="displayStepper" destination="dZw-Ea-aIr" id="9do-Kk-s26"/>
+                <outlet property="launchButton" destination="gPu-Yn-ezD" id="mI0-OB-jbD"/>
+                <outlet property="rememberStepper" destination="JDf-mM-PdX" id="UVD-C2-Yy9"/>
+                <outlet property="remenberLabel" destination="7G5-nS-sHF" id="qpY-sn-ygv"/>
+                <outlet property="saveTimeButton" destination="pA2-W5-sNE" id="490-BU-dj6"/>
+                <outlet property="selectionPasteButton" destination="nbG-Kc-uIJ" id="0Mn-vC-7tJ"/>
+                <outlet property="showMenuButton" destination="K8M-Cf-bJF" id="64Q-KO-yrM"/>
+                <outlet property="view" destination="c22-O7-iKe" id="Xp2-q4-EOC"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="c22-O7-iKe">
+            <rect key="frame" x="0.0" y="0.0" width="518" height="355"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="XG6-fc-PhK">
+                    <rect key="frame" x="0.0" y="0.0" width="518" height="355"/>
+                    <subviews>
+                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gPu-Yn-ezD">
+                            <rect key="frame" x="18" y="319" width="155" height="18"/>
+                            <buttonCell key="cell" type="check" title="Launch JBCut at login" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="fKG-aD-p0N">
+                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                            <connections>
+                                <action selector="launchButtonClick:" target="-2" id="cI5-Vd-BjS"/>
+                            </connections>
+                        </button>
+                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="K8M-Cf-bJF">
+                            <rect key="frame" x="18" y="265" width="140" height="18"/>
+                            <buttonCell key="cell" type="check" title="Menu show history " bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Ctd-yY-4xs">
+                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                            <connections>
+                                <action selector="showMenuButtonClick:" target="-2" id="5Al-lZ-vvk"/>
+                            </connections>
+                        </button>
+                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nbG-Kc-uIJ">
+                            <rect key="frame" x="18" y="211" width="151" height="18"/>
+                            <buttonCell key="cell" type="check" title="Menu selction pastes" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="HfF-S8-uG9">
+                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                            <connections>
+                                <action selector="selectPastesButtonClick:" target="-2" id="Slf-LO-2Rs"/>
+                            </connections>
+                        </button>
+                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="QXF-qX-bO2">
+                            <rect key="frame" x="34" y="299" width="263" height="14"/>
+                            <textFieldCell key="cell" selectable="YES" title="if selected, JBCut will still lanuch at system login." id="dkJ-66-OZ0">
+                                <font key="font" metaFont="system" size="11"/>
+                                <color key="textColor" name="systemGrayColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Ic7-Mv-ZDM">
+                            <rect key="frame" x="34" y="245" width="241" height="14"/>
+                            <textFieldCell key="cell" selectable="YES" title="if selected, show the clip histoy data in menu" id="ZLb-Wy-j87">
+                                <font key="font" metaFont="system" size="11"/>
+                                <color key="textColor" name="systemGrayColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="ows-J7-HBf">
+                            <rect key="frame" x="34" y="191" width="189" height="14"/>
+                            <textFieldCell key="cell" selectable="YES" title="can click clip data in menu to paste" id="kDn-cx-2co">
+                                <font key="font" metaFont="system" size="11"/>
+                                <color key="textColor" name="systemGrayColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="N7S-4s-1HM">
+                            <rect key="frame" x="18" y="156" width="108" height="17"/>
+                            <textFieldCell key="cell" lineBreakMode="clipping" title="Cliping save time" id="QNT-2S-fNz">
+                                <font key="font" metaFont="system"/>
+                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="PR9-JC-8xR">
+                            <rect key="frame" x="18" y="117" width="159" height="17"/>
+                            <textFieldCell key="cell" lineBreakMode="clipping" title="Cliping rememeber Count" id="1We-68-ECn">
+                                <font key="font" metaFont="system"/>
+                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pN4-uT-YCl">
+                            <rect key="frame" x="18" y="60" width="133" height="17"/>
+                            <textFieldCell key="cell" lineBreakMode="clipping" title="Cliping display Count" id="2a3-BZ-rj6">
+                                <font key="font" metaFont="system"/>
+                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="7G5-nS-sHF">
+                            <rect key="frame" x="193" y="117" width="13" height="17"/>
+                            <textFieldCell key="cell" lineBreakMode="clipping" title="8" id="Nd8-eq-dwj">
+                                <font key="font" metaFont="system"/>
+                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                        <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JDf-mM-PdX">
+                            <rect key="frame" x="207" y="112" width="19" height="27"/>
+                            <stepperCell key="cell" continuous="YES" alignment="left" minValue="10" maxValue="100" doubleValue="10" id="HRG-Vb-4Of"/>
+                            <connections>
+                                <action selector="rememberStepperClick:" target="-2" id="gSJ-us-zMZ"/>
+                            </connections>
+                        </stepper>
+                        <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pA2-W5-sNE">
+                            <rect key="frame" x="136" y="151" width="126" height="25"/>
+                            <popUpButtonCell key="cell" type="push" title="After each clip" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="zCQ-rH-7uj" id="Fq2-Lz-s0A">
+                                <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="menu"/>
+                                <menu key="menu" id="kxw-3B-6Il">
+                                    <items>
+                                        <menuItem title="After each clip" state="on" id="zCQ-rH-7uj"/>
+                                        <menuItem title="On exit" id="vYT-2G-XcV"/>
+                                        <menuItem title="Never" id="RfX-4d-K1m"/>
+                                    </items>
+                                </menu>
+                            </popUpButtonCell>
+                            <connections>
+                                <action selector="saveTimeButtonClick:" target="-2" id="RSR-CZ-7KY"/>
+                            </connections>
+                        </popUpButton>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qtG-CC-3U9">
+                            <rect key="frame" x="159" y="60" width="13" height="17"/>
+                            <textFieldCell key="cell" lineBreakMode="clipping" title="8" id="cxt-ig-NAW">
+                                <font key="font" metaFont="system"/>
+                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                        <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dZw-Ea-aIr">
+                            <rect key="frame" x="173" y="55" width="19" height="27"/>
+                            <stepperCell key="cell" continuous="YES" alignment="left" maxValue="100" doubleValue="10" id="rQi-ep-MqU"/>
+                            <connections>
+                                <action selector="displayStepperClick:" target="-2" id="5pe-Sd-vdc"/>
+                            </connections>
+                        </stepper>
+                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="A30-ut-y2c">
+                            <rect key="frame" x="34" y="95" width="334" height="14"/>
+                            <textFieldCell key="cell" selectable="YES" title="when turn down the cliping count，may lose some history data" usesSingleLineMode="YES" id="Hzh-rX-3Dc">
+                                <font key="font" metaFont="system" size="11"/>
+                                <color key="textColor" name="systemGrayColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="SwL-qu-3sS">
+                            <rect key="frame" x="34" y="35" width="190" height="14"/>
+                            <textFieldCell key="cell" selectable="YES" title="the count which shown in the menu" usesSingleLineMode="YES" id="3In-R0-RaA">
+                                <font key="font" metaFont="system" size="11"/>
+                                <color key="textColor" name="systemGrayColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="ows-J7-HBf" firstAttribute="top" secondItem="nbG-Kc-uIJ" secondAttribute="bottom" constant="8" id="247-m7-72o"/>
+                        <constraint firstItem="ows-J7-HBf" firstAttribute="leading" secondItem="Ic7-Mv-ZDM" secondAttribute="leading" id="3bR-AT-84B"/>
+                        <constraint firstItem="7G5-nS-sHF" firstAttribute="centerY" secondItem="PR9-JC-8xR" secondAttribute="centerY" id="4cx-M0-ix6"/>
+                        <constraint firstItem="QXF-qX-bO2" firstAttribute="leading" secondItem="gPu-Yn-ezD" secondAttribute="leading" constant="16" id="7Iz-eY-nxv"/>
+                        <constraint firstItem="nbG-Kc-uIJ" firstAttribute="top" secondItem="Ic7-Mv-ZDM" secondAttribute="bottom" constant="18" id="84z-9h-Y2R"/>
+                        <constraint firstItem="pA2-W5-sNE" firstAttribute="centerY" secondItem="N7S-4s-1HM" secondAttribute="centerY" id="D3D-KT-OGs"/>
+                        <constraint firstItem="Ic7-Mv-ZDM" firstAttribute="leading" secondItem="QXF-qX-bO2" secondAttribute="leading" id="KmE-aW-DVz"/>
+                        <constraint firstItem="K8M-Cf-bJF" firstAttribute="leading" secondItem="gPu-Yn-ezD" secondAttribute="leading" id="KpD-Uv-OaU"/>
+                        <constraint firstItem="pN4-uT-YCl" firstAttribute="top" secondItem="A30-ut-y2c" secondAttribute="bottom" constant="18" id="NP6-fD-Z2U"/>
+                        <constraint firstItem="K8M-Cf-bJF" firstAttribute="top" secondItem="QXF-qX-bO2" secondAttribute="bottom" constant="18" id="OF2-Sz-Cse"/>
+                        <constraint firstItem="gPu-Yn-ezD" firstAttribute="leading" secondItem="XG6-fc-PhK" secondAttribute="leading" constant="20" id="PPR-H8-ycz"/>
+                        <constraint firstItem="A30-ut-y2c" firstAttribute="leading" secondItem="ows-J7-HBf" secondAttribute="leading" id="RZU-LS-epr"/>
+                        <constraint firstItem="nbG-Kc-uIJ" firstAttribute="leading" secondItem="K8M-Cf-bJF" secondAttribute="leading" id="S2z-Sz-3bq"/>
+                        <constraint firstItem="Ic7-Mv-ZDM" firstAttribute="top" secondItem="K8M-Cf-bJF" secondAttribute="bottom" constant="8" id="Sap-fW-Cde"/>
+                        <constraint firstItem="JDf-mM-PdX" firstAttribute="centerY" secondItem="7G5-nS-sHF" secondAttribute="centerY" id="TRN-eL-O8F"/>
+                        <constraint firstItem="SwL-qu-3sS" firstAttribute="top" secondItem="dZw-Ea-aIr" secondAttribute="bottom" constant="8" id="WDp-gu-D0k"/>
+                        <constraint firstItem="N7S-4s-1HM" firstAttribute="leading" secondItem="nbG-Kc-uIJ" secondAttribute="leading" id="Yzr-vl-bX2"/>
+                        <constraint firstItem="QXF-qX-bO2" firstAttribute="top" secondItem="gPu-Yn-ezD" secondAttribute="bottom" constant="8" id="cYl-Bz-sID"/>
+                        <constraint firstItem="JDf-mM-PdX" firstAttribute="leading" secondItem="7G5-nS-sHF" secondAttribute="trailing" constant="6" id="cZc-mN-TcU"/>
+                        <constraint firstItem="dZw-Ea-aIr" firstAttribute="centerY" secondItem="qtG-CC-3U9" secondAttribute="centerY" id="dZF-g5-m64"/>
+                        <constraint firstItem="N7S-4s-1HM" firstAttribute="top" secondItem="ows-J7-HBf" secondAttribute="bottom" constant="18" id="fxb-ks-Ftf"/>
+                        <constraint firstItem="gPu-Yn-ezD" firstAttribute="top" secondItem="XG6-fc-PhK" secondAttribute="top" constant="20" id="g7q-Cs-ScT"/>
+                        <constraint firstItem="7G5-nS-sHF" firstAttribute="leading" secondItem="PR9-JC-8xR" secondAttribute="trailing" constant="20" id="gxt-n6-rjU"/>
+                        <constraint firstItem="A30-ut-y2c" firstAttribute="top" secondItem="PR9-JC-8xR" secondAttribute="bottom" constant="8" id="hE4-q8-jc5"/>
+                        <constraint firstItem="PR9-JC-8xR" firstAttribute="leading" secondItem="N7S-4s-1HM" secondAttribute="leading" id="hzf-Rh-Q5v"/>
+                        <constraint firstItem="dZw-Ea-aIr" firstAttribute="leading" secondItem="qtG-CC-3U9" secondAttribute="trailing" constant="6" id="jkK-fN-n4E"/>
+                        <constraint firstItem="qtG-CC-3U9" firstAttribute="centerY" secondItem="pN4-uT-YCl" secondAttribute="centerY" id="kyV-2E-5fi"/>
+                        <constraint firstItem="SwL-qu-3sS" firstAttribute="leading" secondItem="A30-ut-y2c" secondAttribute="leading" id="mHx-bC-5ze"/>
+                        <constraint firstItem="qtG-CC-3U9" firstAttribute="leading" secondItem="pN4-uT-YCl" secondAttribute="trailing" constant="12" id="rVN-1b-f8K"/>
+                        <constraint firstItem="pA2-W5-sNE" firstAttribute="leading" secondItem="N7S-4s-1HM" secondAttribute="trailing" constant="14" id="wV2-2f-dgO"/>
+                        <constraint firstItem="pN4-uT-YCl" firstAttribute="leading" secondItem="PR9-JC-8xR" secondAttribute="leading" id="xG5-r6-7f6"/>
+                        <constraint firstItem="PR9-JC-8xR" firstAttribute="top" secondItem="N7S-4s-1HM" secondAttribute="bottom" constant="22" id="xwd-Me-Cmv"/>
+                    </constraints>
+                </customView>
+            </subviews>
+            <constraints>
+                <constraint firstItem="XG6-fc-PhK" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="AoU-1F-MG5"/>
+                <constraint firstAttribute="trailing" secondItem="XG6-fc-PhK" secondAttribute="trailing" id="IMb-re-LUn"/>
+                <constraint firstItem="XG6-fc-PhK" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="ajq-4l-OEh"/>
+                <constraint firstAttribute="bottom" secondItem="XG6-fc-PhK" secondAttribute="bottom" id="iV3-Eh-0hg"/>
+            </constraints>
+            <point key="canvasLocation" x="140" y="76.5"/>
+        </customView>
+    </objects>
+</document>

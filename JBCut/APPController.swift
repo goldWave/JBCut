@@ -20,7 +20,6 @@ class APPController: NSObject, NSMenuDelegate, HotKeyDelegate, NSApplicationDele
     private var lastChangeCount = 0
     private var nowShowIndex = 0
     private var filePath: String = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)[0]  + "/clipData.plist"
-    private let limitClipCount = 20
     private let jbPastBoard = NSPasteboard.general
     private var isMenuOpened = false
     private var prefsWindwoController = PreferencesWindowController.init()
@@ -104,8 +103,8 @@ class APPController: NSObject, NSMenuDelegate, HotKeyDelegate, NSApplicationDele
     }
     
     func checkIsOutData() {
-        if clipArray.count > limitClipCount {
-            clipArray.removeSubrange(limitClipCount..<clipArray.count)
+        if clipArray.count > GlobalVariable.shared.clipMenuCount {
+            clipArray.removeSubrange(GlobalVariable.shared.clipMenuCount..<clipArray.count)
         }
     }
     
@@ -177,7 +176,7 @@ class APPController: NSObject, NSMenuDelegate, HotKeyDelegate, NSApplicationDele
     }
     
     func getMenuArray() -> [ClipData] {
-        let currentCount = min(clipArray.count, GlobalVariable.shared.clipMenuCount)
+        let currentCount = min(clipArray.count, GlobalVariable.shared.displayMenuCount)
         return clipArray[0..<currentCount].reversed()
     }
     

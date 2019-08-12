@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		584D3B0B22CC8C1B00F2B0D3 /* BezelWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584D3B0A22CC8C1B00F2B0D3 /* BezelWindow.swift */; };
+		5863B74C23014236002A2AE6 /* GeneralView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5863B74B23014236002A2AE6 /* GeneralView.xib */; };
+		5863B74E23014263002A2AE6 /* PreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5863B74D23014263002A2AE6 /* PreferencesViewController.swift */; };
 		5873CCBB22D5C47B00C266C8 /* NSBezierPath+background.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5873CCBA22D5C47B00C266C8 /* NSBezierPath+background.swift */; };
 		58870FEC22CDAA9100496E44 /* HotKeyCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58870FEB22CDAA9100496E44 /* HotKeyCenter.swift */; };
 		58870FEE22CDCF4400496E44 /* ClipData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58870FED22CDCF4400496E44 /* ClipData.swift */; };
@@ -21,10 +23,14 @@
 		58B1AF0B22CB332F00C89530 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 58B1AF0922CB332F00C89530 /* Main.storyboard */; };
 		58B1AF1622CB3C1000C89530 /* APPController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B1AF1522CB3C1000C89530 /* APPController.swift */; };
 		58EB30D222D2DC630056DBB2 /* RoundRexTextfield.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58EB30D122D2DC630056DBB2 /* RoundRexTextfield.swift */; };
+		58EF4A6023024D80009BEFEB /* HotkeyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58EF4A5F23024D80009BEFEB /* HotkeyView.xib */; };
+		58EF4A6223024DB0009BEFEB /* AppearanceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58EF4A6123024DB0009BEFEB /* AppearanceView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		584D3B0A22CC8C1B00F2B0D3 /* BezelWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BezelWindow.swift; sourceTree = "<group>"; };
+		5863B74B23014236002A2AE6 /* GeneralView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GeneralView.xib; sourceTree = "<group>"; };
+		5863B74D23014263002A2AE6 /* PreferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesViewController.swift; sourceTree = "<group>"; };
 		5873CCBA22D5C47B00C266C8 /* NSBezierPath+background.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSBezierPath+background.swift"; sourceTree = "<group>"; };
 		58870FEB22CDAA9100496E44 /* HotKeyCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotKeyCenter.swift; sourceTree = "<group>"; };
 		58870FED22CDCF4400496E44 /* ClipData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipData.swift; sourceTree = "<group>"; };
@@ -41,6 +47,8 @@
 		58B1AF0D22CB332F00C89530 /* JBCut.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = JBCut.entitlements; sourceTree = "<group>"; };
 		58B1AF1522CB3C1000C89530 /* APPController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APPController.swift; sourceTree = "<group>"; };
 		58EB30D122D2DC630056DBB2 /* RoundRexTextfield.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundRexTextfield.swift; sourceTree = "<group>"; };
+		58EF4A5F23024D80009BEFEB /* HotkeyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HotkeyView.xib; sourceTree = "<group>"; };
+		58EF4A6123024DB0009BEFEB /* AppearanceView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AppearanceView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +62,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5863B74A23013DB4002A2AE6 /* Preferebces */ = {
+			isa = PBXGroup;
+			children = (
+				58A0999022DC56E500159217 /* PreferencesWindowController.swift */,
+				5863B74D23014263002A2AE6 /* PreferencesViewController.swift */,
+				5863B74B23014236002A2AE6 /* GeneralView.xib */,
+				58EF4A5F23024D80009BEFEB /* HotkeyView.xib */,
+				58EF4A6123024DB0009BEFEB /* AppearanceView.xib */,
+				58A0999122DC56E500159217 /* PreferencesWindowController.xib */,
+			);
+			path = Preferebces;
+			sourceTree = "<group>";
+		};
 		5873CCB822D5C3B600C266C8 /* BezelWindow */ = {
 			isa = PBXGroup;
 			children = (
@@ -101,8 +122,7 @@
 				58870FEB22CDAA9100496E44 /* HotKeyCenter.swift */,
 				58870FED22CDCF4400496E44 /* ClipData.swift */,
 				58A0998A22D890AD00159217 /* GlobalVariable.swift */,
-				58A0999022DC56E500159217 /* PreferencesWindowController.swift */,
-				58A0999122DC56E500159217 /* PreferencesWindowController.xib */,
+				5863B74A23013DB4002A2AE6 /* Preferebces */,
 				5873CCB822D5C3B600C266C8 /* BezelWindow */,
 				5873CCB922D5C41700C266C8 /* Resources */,
 			);
@@ -174,11 +194,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				58A0999322DC56E500159217 /* PreferencesWindowController.xib in Resources */,
+				58EF4A6223024DB0009BEFEB /* AppearanceView.xib in Resources */,
 				58A5EA4B22FC127100E92314 /* net.sf.jumpcut.preferences.appearance.tiff in Resources */,
 				58B1AF0822CB332F00C89530 /* Assets.xcassets in Resources */,
 				58B1AF0B22CB332F00C89530 /* Main.storyboard in Resources */,
 				58A5EA4C22FC127100E92314 /* net.sf.jumpcut.preferences.general.tiff in Resources */,
 				58A5EA4A22FC127100E92314 /* net.sf.jumpcut.preferences.hotkey.tiff in Resources */,
+				58EF4A6023024D80009BEFEB /* HotkeyView.xib in Resources */,
+				5863B74C23014236002A2AE6 /* GeneralView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -191,6 +214,7 @@
 			files = (
 				58A0998B22D890AD00159217 /* GlobalVariable.swift in Sources */,
 				5873CCBB22D5C47B00C266C8 /* NSBezierPath+background.swift in Sources */,
+				5863B74E23014263002A2AE6 /* PreferencesViewController.swift in Sources */,
 				58870FEE22CDCF4400496E44 /* ClipData.swift in Sources */,
 				584D3B0B22CC8C1B00F2B0D3 /* BezelWindow.swift in Sources */,
 				58EB30D222D2DC630056DBB2 /* RoundRexTextfield.swift in Sources */,
