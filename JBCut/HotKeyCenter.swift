@@ -45,4 +45,23 @@ class HotKeyCenter: NSObject {
         RegisterEventHotKey(UInt32(kVK_ANSI_K), UInt32(cmdKey|shiftKey), preHotkeyId, GetApplicationEventTarget(), OptionBits(0), &hotkey)
         RegisterEventHotKey(UInt32(kVK_ANSI_L), UInt32(cmdKey|shiftKey), nextHotkeyId, GetApplicationEventTarget(), OptionBits(0), &hotkey)
     }
+    
+    func fakeCommandVWithDelay() {
+        self.perform(#selector(fakeCommandV), with: nil, afterDelay: 0.2)
+    }
+    
+    @objc private func fakeCommandV() {
+        let source = CGEventSource(stateID: .combinedSessionState)
+        //disabel local keyboard click
+        source?.setLocalEventsFilterDuringSuppressionState([.permitLocalKeyboardEvents, .permitSystemDefinedEvents], state: .eventSuppressionStateSuppressionInterval)
+        //press command + v
+        let keyDown = CGEvent(keyboardEventSource: source, virtualKey: CGKeyCode(kVK_ANSI_V), keyDown: true)
+        keyDown?.flags = .maskCommand
+        //release command + v
+        let keyUp = CGEvent(keyboardEventSource: source, virtualKey: CGKeyCode(kVK_ANSI_V), keyDown: false)
+        keyUp?.flags = .maskCommand
+        //post paste command
+        keyDown?.post(tap: .cgAnnotatedSessionEventTap)
+        keyUp?.post(tap: .cgAnnotatedSessionEventTap)
+    }
 }

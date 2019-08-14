@@ -110,7 +110,7 @@ class PreferencesWindowController: NSWindowController, NSToolbarDelegate {
     }
     
     func loadViewWithIdentifier(viewIdentifier: String, withAnimation: Bool) {
-        print(viewIdentifier)
+        
         if currentViewIdentifier == viewIdentifier {
             return
         }

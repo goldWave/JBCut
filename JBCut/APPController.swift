@@ -8,8 +8,6 @@
 
 import Cocoa
 import Carbon.HIToolbox
-import ServiceManagement
-
 
 @NSApplicationMain
 class APPController: NSObject, NSMenuDelegate, HotKeyDelegate, NSApplicationDelegate, BezelWindowDelegate {
@@ -19,7 +17,19 @@ class APPController: NSObject, NSMenuDelegate, HotKeyDelegate, NSApplicationDele
     private var clipArray = [ClipData]()
     private var lastChangeCount = 0
     private var nowShowIndex = 0
-    private var filePath: String = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)[0]  + "/clipData.plist"
+    private var filePath: String {
+        get {
+            let path = NSSearchPathForDirectoriesInDomains(.applicationSupportDirectory, .userDomainMask, true)[0]  + "/JBCut"
+            if !FileManager.default.fileExists(atPath: path) {
+                do {
+                    try FileManager.default.createDirectory(atPath: path, withIntermediateDirectories: true, attributes: nil)
+                } catch {
+                    print("data file creat failed!!!")
+                }
+            }
+            return path + "/clipData.plist"
+        }
+    }
     private let jbPastBoard = NSPasteboard.general
     private var isMenuOpened = false
     private var prefsWindwoController = PreferencesWindowController.init()
@@ -62,16 +72,6 @@ class APPController: NSObject, NSMenuDelegate, HotKeyDelegate, NSApplicationDele
         
         preferencesClicked(statusItem)
         addNotificationObsever()
-        
-        let bundleID = Bundle.main.bundleIdentifier
-
-//        if  SMLoginItemSetEnabled(bundleID! as CFString, (GlobalVariable.shared.launchAtLogin as NSNumber).boolValue) {
-        if  SMLoginItemSetEnabled("com.jimbo.JBCut" as CFString, false) {
-
-            print("auto login succeed")
-        } else {
-            print("auto login failed")
-        }
     }
     
     
@@ -151,7 +151,6 @@ class APPController: NSObject, NSMenuDelegate, HotKeyDelegate, NSApplicationDele
     }
     
     func updateClipMenu() {
-//        print("updateClipMenu")
         let menuItems = mainMenu.items
         
         for item in menuItems {
@@ -194,10 +193,9 @@ class APPController: NSObject, NSMenuDelegate, HotKeyDelegate, NSApplicationDele
         return clipArray[0..<currentCount].reversed()
     }
     
-    
     //MARK: - NSApplicationDelegate
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        print("applicationDidFinishLaunching")
+        LoginItem.checkAppStartWithLoginItem()
     }
     
     func applicationWillResignActive(_ notification: Notification) {
@@ -216,7 +214,7 @@ class APPController: NSObject, NSMenuDelegate, HotKeyDelegate, NSApplicationDele
         self.perform(#selector(appHide), with: nil, afterDelay: 0)
         moveClipDateToTop(index: nowShowIndex)
         if GlobalVariable.shared.menuSelectPastes == NSControl.StateValue.on.rawValue {
-           self.perform(#selector(fakeCommandV), with: nil, afterDelay: 0.2)
+            HotKeyCenter.shared.fakeCommandVWithDelay()
         }
     }
     
@@ -235,22 +233,7 @@ class APPController: NSObject, NSMenuDelegate, HotKeyDelegate, NSApplicationDele
     func pasteFromStack() {
         self.perform(#selector(appHide), with: nil, afterDelay: 0.2)
         moveClipDateToTop(index: nowShowIndex)
-        self.perform(#selector(fakeCommandV), with: nil, afterDelay: 0.2)
-    }
-    
-    @objc func fakeCommandV() {
-        let source = CGEventSource(stateID: .combinedSessionState)
-        //disabel local keyboard click
-        source?.setLocalEventsFilterDuringSuppressionState([.permitLocalKeyboardEvents, .permitSystemDefinedEvents], state: .eventSuppressionStateSuppressionInterval)
-        //press command + v
-        let keyDown = CGEvent(keyboardEventSource: source, virtualKey: CGKeyCode(kVK_ANSI_V), keyDown: true)
-        keyDown?.flags = .maskCommand
-        //release command + v
-        let keyUp = CGEvent(keyboardEventSource: source, virtualKey: CGKeyCode(kVK_ANSI_V), keyDown: false)
-        keyUp?.flags = .maskCommand
-        //post paste command
-        keyDown?.post(tap: .cgAnnotatedSessionEventTap)
-        keyUp?.post(tap: .cgAnnotatedSessionEventTap)
+        HotKeyCenter.shared.fakeCommandVWithDelay()
     }
     
     func moveClipDateToTop(index: Int) {

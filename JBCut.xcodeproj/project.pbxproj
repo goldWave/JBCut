@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		584D3B0B22CC8C1B00F2B0D3 /* BezelWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584D3B0A22CC8C1B00F2B0D3 /* BezelWindow.swift */; };
+		585B209F230403E5009FC658 /* LoginItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 585B209E230403E5009FC658 /* LoginItem.swift */; };
 		5863B74C23014236002A2AE6 /* GeneralView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5863B74B23014236002A2AE6 /* GeneralView.xib */; };
 		5863B74E23014263002A2AE6 /* PreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5863B74D23014263002A2AE6 /* PreferencesViewController.swift */; };
 		5873CCBB22D5C47B00C266C8 /* NSBezierPath+background.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5873CCBA22D5C47B00C266C8 /* NSBezierPath+background.swift */; };
@@ -26,6 +27,10 @@
 		58EF4A6023024D80009BEFEB /* HotkeyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58EF4A5F23024D80009BEFEB /* HotkeyView.xib */; };
 		58EF4A6223024DB0009BEFEB /* AppearanceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58EF4A6123024DB0009BEFEB /* AppearanceView.xib */; };
 		58EF4A792303E0D6009BEFEB /* ServiceManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58EF4A782303E0D6009BEFEB /* ServiceManagement.framework */; };
+		58EF4A992303F4F2009BEFEB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58EF4A982303F4F2009BEFEB /* AppDelegate.swift */; };
+		58EF4A9B2303F4F4009BEFEB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 58EF4A9A2303F4F4009BEFEB /* Assets.xcassets */; };
+		58EF4A9E2303F4F4009BEFEB /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58EF4A9C2303F4F4009BEFEB /* MainMenu.xib */; };
+		58EF4AA72303F5F9009BEFEB /* JBCut Helper.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = 58EF4A962303F4F2009BEFEB /* JBCut Helper.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -39,10 +44,21 @@
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		58EF4AA62303F5ED009BEFEB /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Contents/Library/LoginItems;
+			dstSubfolderSpec = 1;
+			files = (
+				58EF4AA72303F5F9009BEFEB /* JBCut Helper.app in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		584D3B0A22CC8C1B00F2B0D3 /* BezelWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BezelWindow.swift; sourceTree = "<group>"; };
+		585B209E230403E5009FC658 /* LoginItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginItem.swift; sourceTree = "<group>"; };
 		5863B74B23014236002A2AE6 /* GeneralView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GeneralView.xib; sourceTree = "<group>"; };
 		5863B74D23014263002A2AE6 /* PreferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesViewController.swift; sourceTree = "<group>"; };
 		5873CCBA22D5C47B00C266C8 /* NSBezierPath+background.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSBezierPath+background.swift"; sourceTree = "<group>"; };
@@ -64,6 +80,12 @@
 		58EF4A5F23024D80009BEFEB /* HotkeyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HotkeyView.xib; sourceTree = "<group>"; };
 		58EF4A6123024DB0009BEFEB /* AppearanceView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AppearanceView.xib; sourceTree = "<group>"; };
 		58EF4A782303E0D6009BEFEB /* ServiceManagement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ServiceManagement.framework; path = System/Library/Frameworks/ServiceManagement.framework; sourceTree = SDKROOT; };
+		58EF4A962303F4F2009BEFEB /* JBCut Helper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "JBCut Helper.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		58EF4A982303F4F2009BEFEB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		58EF4A9A2303F4F4009BEFEB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		58EF4A9D2303F4F4009BEFEB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		58EF4A9F2303F4F4009BEFEB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		58EF4AA02303F4F4009BEFEB /* JBCut_Helper.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = JBCut_Helper.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +94,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				58EF4A792303E0D6009BEFEB /* ServiceManagement.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		58EF4A932303F4F2009BEFEB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -117,6 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				58B1AF0422CB332E00C89530 /* JBCut */,
+				58EF4A972303F4F2009BEFEB /* JBCut Helper */,
 				58B1AF0322CB332E00C89530 /* Products */,
 				58EF4A772303E0D6009BEFEB /* Frameworks */,
 			);
@@ -126,6 +156,7 @@
 			isa = PBXGroup;
 			children = (
 				58B1AF0222CB332E00C89530 /* JBCut.app */,
+				58EF4A962303F4F2009BEFEB /* JBCut Helper.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -139,6 +170,7 @@
 				58870FEB22CDAA9100496E44 /* HotKeyCenter.swift */,
 				58870FED22CDCF4400496E44 /* ClipData.swift */,
 				58A0998A22D890AD00159217 /* GlobalVariable.swift */,
+				585B209E230403E5009FC658 /* LoginItem.swift */,
 				5863B74A23013DB4002A2AE6 /* Preferebces */,
 				5873CCB822D5C3B600C266C8 /* BezelWindow */,
 				5873CCB922D5C41700C266C8 /* Resources */,
@@ -154,6 +186,18 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		58EF4A972303F4F2009BEFEB /* JBCut Helper */ = {
+			isa = PBXGroup;
+			children = (
+				58EF4A982303F4F2009BEFEB /* AppDelegate.swift */,
+				58EF4A9A2303F4F4009BEFEB /* Assets.xcassets */,
+				58EF4A9C2303F4F4009BEFEB /* MainMenu.xib */,
+				58EF4A9F2303F4F4009BEFEB /* Info.plist */,
+				58EF4AA02303F4F4009BEFEB /* JBCut_Helper.entitlements */,
+			);
+			path = "JBCut Helper";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -165,6 +209,7 @@
 				58B1AEFF22CB332E00C89530 /* Frameworks */,
 				58B1AF0022CB332E00C89530 /* Resources */,
 				58EF4A912303E5EA009BEFEB /* Embed App Extensions */,
+				58EF4AA62303F5ED009BEFEB /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -173,6 +218,23 @@
 			name = JBCut;
 			productName = JBCut;
 			productReference = 58B1AF0222CB332E00C89530 /* JBCut.app */;
+			productType = "com.apple.product-type.application";
+		};
+		58EF4A952303F4F2009BEFEB /* JBCut Helper */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 58EF4AA12303F4F4009BEFEB /* Build configuration list for PBXNativeTarget "JBCut Helper" */;
+			buildPhases = (
+				58EF4A922303F4F2009BEFEB /* Sources */,
+				58EF4A932303F4F2009BEFEB /* Frameworks */,
+				58EF4A942303F4F2009BEFEB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "JBCut Helper";
+			productName = "JBCut Helper";
+			productReference = 58EF4A962303F4F2009BEFEB /* JBCut Helper.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -194,6 +256,10 @@
 							};
 						};
 					};
+					58EF4A952303F4F2009BEFEB = {
+						CreatedOnToolsVersion = 10.3;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = 58B1AEFD22CB332E00C89530 /* Build configuration list for PBXProject "JBCut" */;
@@ -210,6 +276,7 @@
 			projectRoot = "";
 			targets = (
 				58B1AF0122CB332E00C89530 /* JBCut */,
+				58EF4A952303F4F2009BEFEB /* JBCut Helper */,
 			);
 		};
 /* End PBXProject section */
@@ -231,6 +298,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		58EF4A942303F4F2009BEFEB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				58EF4A9B2303F4F4009BEFEB /* Assets.xcassets in Resources */,
+				58EF4A9E2303F4F4009BEFEB /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -244,9 +320,18 @@
 				58870FEE22CDCF4400496E44 /* ClipData.swift in Sources */,
 				584D3B0B22CC8C1B00F2B0D3 /* BezelWindow.swift in Sources */,
 				58EB30D222D2DC630056DBB2 /* RoundRexTextfield.swift in Sources */,
+				585B209F230403E5009FC658 /* LoginItem.swift in Sources */,
 				58870FEC22CDAA9100496E44 /* HotKeyCenter.swift in Sources */,
 				58A0999222DC56E500159217 /* PreferencesWindowController.swift in Sources */,
 				58B1AF1622CB3C1000C89530 /* APPController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		58EF4A922303F4F2009BEFEB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				58EF4A992303F4F2009BEFEB /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,6 +344,14 @@
 				58B1AF0A22CB332F00C89530 /* Base */,
 			);
 			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		58EF4A9C2303F4F4009BEFEB /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				58EF4A9D2303F4F4009BEFEB /* Base */,
+			);
+			name = MainMenu.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -416,6 +509,44 @@
 			};
 			name = Release;
 		};
+		58EF4AA22303F4F4009BEFEB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "JBCut Helper/JBCut_Helper.entitlements";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 7SHP7V4RR7;
+				INFOPLIST_FILE = "JBCut Helper/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.jimbo.JBCut-Helper";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		58EF4AA32303F4F4009BEFEB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "JBCut Helper/JBCut_Helper.entitlements";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 7SHP7V4RR7;
+				INFOPLIST_FILE = "JBCut Helper/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.jimbo.JBCut-Helper";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -433,6 +564,15 @@
 			buildConfigurations = (
 				58B1AF1122CB332F00C89530 /* Debug */,
 				58B1AF1222CB332F00C89530 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		58EF4AA12303F4F4009BEFEB /* Build configuration list for PBXNativeTarget "JBCut Helper" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				58EF4AA22303F4F4009BEFEB /* Debug */,
+				58EF4AA32303F4F4009BEFEB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

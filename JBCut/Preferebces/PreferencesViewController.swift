@@ -44,6 +44,7 @@ class GeneralViewController: NSViewController {
     @IBAction func launchButtonClick(_ sender: NSButton) {
         GlobalVariable.shared.launchAtLogin = sender.state.rawValue;
         UserDefaults.standard.set(GlobalVariable.shared.launchAtLogin, forKey: JBConstants.launchAtLogin)
+        LoginItem.checkAppStartWithLoginItem()
     }
     @IBAction func showMenuButtonClick(_ sender: NSButton) {
         GlobalVariable.shared.menuShowHistory = sender.state.rawValue;
