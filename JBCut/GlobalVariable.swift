@@ -16,6 +16,9 @@ struct JBConstants {
     static let showHistory: String = "showHistory";
     static let selectPastes: String = "selectPastes";
     static let saveTime: String = "saveTime";
+    struct Notification {
+       static let clipMenuCountChanged: String = "clipMenuCountChanged";
+    }
 }
 
 
@@ -41,7 +44,7 @@ struct JBConstants {
         menuShowHistory = UserDefaults.standard.getIntValue(key: JBConstants.showHistory, defaultValue: menuShowHistory)
         menuSelectPastes = UserDefaults.standard.getIntValue(key: JBConstants.selectPastes, defaultValue: menuSelectPastes)
         
-        menuSelectPastes = UserDefaults.standard.getIntValue(key: JBConstants.saveTime, defaultValue: saveTime)
+        saveTime = UserDefaults.standard.getIntValue(key: JBConstants.saveTime, defaultValue: saveTime)
     }
 }
 

@@ -8,7 +8,7 @@
 
 import Cocoa
 import Carbon.HIToolbox
-
+import ServiceManagement
 
 
 @NSApplicationMain
@@ -33,17 +33,9 @@ class APPController: NSObject, NSMenuDelegate, HotKeyDelegate, NSApplicationDele
         return beze
     }()
     
-    
-    func applicationDidFinishLaunching(_ aNotification: Notification) {
-        print("applicationDidFinishLaunching")
-    }
-
-    func applicationWillResignActive(_ notification: Notification) {
-        hideBezeWindow()
-    }
-    
     override func awakeFromNib() {
         if NSRunningApplication.runningApplications(withBundleIdentifier: Bundle.main.bundleIdentifier ?? "").count > 1 {
+            print("only run one app, so terminate self")
             NSApp.terminate(nil)
             return;
         }
@@ -69,6 +61,22 @@ class APPController: NSObject, NSMenuDelegate, HotKeyDelegate, NSApplicationDele
         updateClipMenu()
         
         preferencesClicked(statusItem)
+        addNotificationObsever()
+        
+        let bundleID = Bundle.main.bundleIdentifier
+
+//        if  SMLoginItemSetEnabled(bundleID! as CFString, (GlobalVariable.shared.launchAtLogin as NSNumber).boolValue) {
+        if  SMLoginItemSetEnabled("com.jimbo.JBCut" as CFString, false) {
+
+            print("auto login succeed")
+        } else {
+            print("auto login failed")
+        }
+    }
+    
+    
+    func addNotificationObsever() {
+        NotificationCenter.default.addObserver(self, selector: #selector(checkIsOutData), name: NSNotification.Name(rawValue: JBConstants.Notification.clipMenuCountChanged), object: nil)
     }
     
     @IBAction func quitButtonClick(_ sender: Any) {
@@ -88,13 +96,15 @@ class APPController: NSObject, NSMenuDelegate, HotKeyDelegate, NSApplicationDele
             !clipString.isEmpty &&
             clipArray.first?.clipString != clipString
         {
-            print("add new clip data")
+//            print("add new clip data")
             let data = ClipData.init()
             data.clipString = clipString
             data.timeStamp = Int(NSDate().timeIntervalSince1970)
             clipArray.insert(data, at: 0)
             checkIsOutData()
-            writeDateToFile()
+            if GlobalVariable.shared.saveTime == 0 {
+                writeDateToFile()
+            }
             
             if isMenuOpened {updateClipMenu()}
         }
@@ -102,7 +112,7 @@ class APPController: NSObject, NSMenuDelegate, HotKeyDelegate, NSApplicationDele
         
     }
     
-    func checkIsOutData() {
+    @objc func checkIsOutData() {
         if clipArray.count > GlobalVariable.shared.clipMenuCount {
             clipArray.removeSubrange(GlobalVariable.shared.clipMenuCount..<clipArray.count)
         }
@@ -141,7 +151,7 @@ class APPController: NSObject, NSMenuDelegate, HotKeyDelegate, NSApplicationDele
     }
     
     func updateClipMenu() {
-        print("updateClipMenu")
+//        print("updateClipMenu")
         let menuItems = mainMenu.items
         
         for item in menuItems {
@@ -150,6 +160,10 @@ class APPController: NSObject, NSMenuDelegate, HotKeyDelegate, NSApplicationDele
             } else  {
                 mainMenu.removeItem(item)
             }
+        }
+        
+        if GlobalVariable.shared.menuShowHistory == NSControl.StateValue.off.rawValue {
+            return
         }
         
         let reveredArrary = getMenuArray()
@@ -180,12 +194,30 @@ class APPController: NSObject, NSMenuDelegate, HotKeyDelegate, NSApplicationDele
         return clipArray[0..<currentCount].reversed()
     }
     
+    
+    //MARK: - NSApplicationDelegate
+    func applicationDidFinishLaunching(_ aNotification: Notification) {
+        print("applicationDidFinishLaunching")
+    }
+    
+    func applicationWillResignActive(_ notification: Notification) {
+        hideBezeWindow()
+    }
+    
+    func applicationWillTerminate(_ notification: Notification) {
+        if GlobalVariable.shared.saveTime != 2 {
+            writeDateToFile()
+        }
+    }
+    
     //MARK: - menu clicked
     @objc func processMenuClippingSelection(sender: NSMenuItem) {
         nowShowIndex = sender.menu?.index(of: sender) ?? 0
         self.perform(#selector(appHide), with: nil, afterDelay: 0)
         moveClipDateToTop(index: nowShowIndex)
-        self.perform(#selector(fakeCommandV), with: nil, afterDelay: 0.2)
+        if GlobalVariable.shared.menuSelectPastes == NSControl.StateValue.on.rawValue {
+           self.perform(#selector(fakeCommandV), with: nil, afterDelay: 0.2)
+        }
     }
     
     @IBAction func clearAllData(_ sender: Any) {
@@ -228,7 +260,10 @@ class APPController: NSObject, NSMenuDelegate, HotKeyDelegate, NSApplicationDele
         
         jbPastBoard.declareTypes([NSPasteboard.PasteboardType.string], owner: nil)
         jbPastBoard.setString(clipArray[0].clipString, forType: NSPasteboard.PasteboardType.string)
-        writeDateToFile()
+        
+        if GlobalVariable.shared.saveTime == 0 {
+           writeDateToFile()
+        }
     }
     
     //MARK: - HotKeyDelegate

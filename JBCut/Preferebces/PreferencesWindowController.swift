@@ -96,11 +96,11 @@ class PreferencesWindowController: NSWindowController, NSToolbarDelegate {
     }
     
     func toolbarWillAddItem(_ notification: Notification) {
-        print("toolbarWillAddItem")
+//        print("toolbarWillAddItem")
     }
     
     func toolbarDidRemoveItem(_ notification: Notification) {
-        print("toolbarDidRemoveItem")
+//        print("toolbarDidRemoveItem")
     }
     
     //MARK: - view action

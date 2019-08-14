@@ -32,7 +32,7 @@ class GeneralViewController: NSViewController {
         showMenuButton.state = NSButton.StateValue.init(GlobalVariable.shared.menuShowHistory)
         selectionPasteButton.state = NSButton.StateValue.init(GlobalVariable.shared.menuSelectPastes)
         
-        saveTimeButton.integerValue = GlobalVariable.shared.saveTime
+        saveTimeButton.selectItem(at: GlobalVariable.shared.saveTime)
         
         remenberLabel.integerValue = GlobalVariable.shared.clipMenuCount;
         rememberStepper.integerValue = GlobalVariable.shared.clipMenuCount;
@@ -62,6 +62,8 @@ class GeneralViewController: NSViewController {
         remenberLabel.integerValue = sender.integerValue
         GlobalVariable.shared.clipMenuCount = sender.integerValue;
         UserDefaults.standard.set(GlobalVariable.shared.clipMenuCount, forKey: JBConstants.clipMenuCount)
+        
+        NotificationCenter.default.post(name: NSNotification.Name.init(JBConstants.Notification.clipMenuCountChanged), object: nil)
     }
     @IBAction func displayStepperClick(_ sender: NSStepper) {
         displayLabel.integerValue = sender.integerValue
