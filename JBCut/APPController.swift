@@ -49,7 +49,7 @@ class APPController: NSObject, NSMenuDelegate, HotKeyDelegate, NSApplicationDele
             NSApp.terminate(nil)
             return;
         }
-        print(filePath)
+        print("data file path:" + filePath)
         
         let button = statusItem.button
         button?.image = NSImage(named: "menu_image")
@@ -96,7 +96,6 @@ class APPController: NSObject, NSMenuDelegate, HotKeyDelegate, NSApplicationDele
             !clipString.isEmpty &&
             clipArray.first?.clipString != clipString
         {
-//            print("add new clip data")
             let data = ClipData.init()
             data.clipString = clipString
             data.timeStamp = Int(NSDate().timeIntervalSince1970)
@@ -147,6 +146,7 @@ class APPController: NSObject, NSMenuDelegate, HotKeyDelegate, NSApplicationDele
     
     @objc func appHide() {
         hideBezeWindow()
+        prefsWindwoController.window?.orderOut(nil)
         NSApp.hide(self)
     }
     
@@ -224,11 +224,14 @@ class APPController: NSObject, NSMenuDelegate, HotKeyDelegate, NSApplicationDele
     }
     
     @IBAction func preferencesClicked(_ sender: Any) {
+        if prefsWindwoController.window!.isVisible {
+            return
+        }
         prefsWindwoController.window?.collectionBehavior = NSWindow.CollectionBehavior.canJoinAllSpaces
+        prefsWindwoController.window?.center()
         NSApp.activate(ignoringOtherApps: true)
         prefsWindwoController.window?.makeKeyAndOrderFront(self)
     }
-    
     //MARK: - hotkey cliked
     func pasteFromStack() {
         self.perform(#selector(appHide), with: nil, afterDelay: 0.2)

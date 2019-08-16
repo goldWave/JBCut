@@ -14,11 +14,15 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView id="c22-O7-iKe">
-            <rect key="frame" x="0.0" y="0.0" width="433" height="389"/>
+            <rect key="frame" x="0.0" y="0.0" width="433" height="396"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
+                <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lBf-kI-fqq" customClass="JBRecordView" customModule="JBCut" customModuleProvider="target">
+                    <rect key="frame" x="65" y="183" width="247" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                </customView>
                 <datePicker verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ne3-74-2Sp">
-                    <rect key="frame" x="77" y="273" width="250" height="27"/>
+                    <rect key="frame" x="65" y="258" width="250" height="27"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <datePickerCell key="cell" borderStyle="bezel" alignment="left" id="88L-Di-JE0">
                         <font key="font" metaFont="system"/>
@@ -29,48 +33,8 @@
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                     </datePickerCell>
                 </datePicker>
-                <comboBox verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6A8-f3-YvB">
-                    <rect key="frame" x="94" y="231" width="99" height="26"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="nWz-ox-y9N">
-                        <font key="font" metaFont="system"/>
-                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                        <objectValues>
-                            <string>Item 1</string>
-                            <string>Item 2</string>
-                            <string>Item 3</string>
-                        </objectValues>
-                    </comboBoxCell>
-                </comboBox>
-                <pathControl verticalHuggingPriority="750" fixedFrame="YES" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ocn-x6-5EA">
-                    <rect key="frame" x="94" y="194" width="204" height="22"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <pathCell key="cell" selectable="YES" editable="YES" alignment="left" id="G8u-K6-DR6">
-                        <font key="font" metaFont="system"/>
-                        <url key="url" string="file://localhost/Applications/"/>
-                    </pathCell>
-                </pathControl>
-                <box fixedFrame="YES" boxType="custom" cornerRadius="4" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="j6f-CK-Keg">
-                    <rect key="frame" x="161" y="346" width="170" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <view key="contentView" ambiguous="YES" id="6iN-ya-PoD">
-                        <rect key="frame" x="1" y="1" width="168" height="28"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                    </view>
-                </box>
             </subviews>
-            <point key="canvasLocation" x="6.5" y="130.5"/>
+            <point key="canvasLocation" x="-282.5" y="-123"/>
         </customView>
-        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="7vY-FH-Jzi">
-            <rect key="frame" x="0.0" y="0.0" width="37" height="17"/>
-            <autoresizingMask key="autoresizingMask"/>
-            <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="sr8-SP-7s8">
-                <font key="font" usesAppearanceFont="YES"/>
-                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-            </textFieldCell>
-            <point key="canvasLocation" x="-14" y="114"/>
-        </textField>
     </objects>
 </document>

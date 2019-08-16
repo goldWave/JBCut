@@ -12,9 +12,9 @@ import ServiceManagement
 class LoginItem: NSObject {
     static func checkAppStartWithLoginItem() {
         if SMLoginItemSetEnabled("com.jimbo.JBCut-Helper" as CFString, (GlobalVariable.shared.launchAtLogin as NSNumber).boolValue) {
-            print("auto login succeed")
+            print("add to login item succeed")
         } else {
-            print("auto login failed")
+            print("add to login item succeed")
         }
     }
 }
