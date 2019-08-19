@@ -8,6 +8,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="HotkeysViewController" customModule="JBCut" customModuleProvider="target">
             <connections>
+                <outlet property="preRecordView" destination="lBf-kI-fqq" id="PMI-Sz-7gi"/>
                 <outlet property="view" destination="c22-O7-iKe" id="v6W-Va-ja9"/>
             </connections>
         </customObject>
@@ -21,6 +22,14 @@
                     <rect key="frame" x="65" y="183" width="247" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                 </customView>
+                <button verticalHuggingPriority="750" fixedFrame="YES" tag="452435" translatesAutoresizingMaskIntoConstraints="NO" id="egN-h6-eux">
+                    <rect key="frame" x="43" y="307" width="81" height="32"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="cQb-2c-hKq">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                </button>
                 <datePicker verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ne3-74-2Sp">
                     <rect key="frame" x="65" y="258" width="250" height="27"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>

@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import Carbon
 
 struct JBConstants {
     static let clipMenuCount: String = "clipMenuCount";
@@ -16,11 +17,12 @@ struct JBConstants {
     static let showHistory: String = "showHistory";
     static let selectPastes: String = "selectPastes";
     static let saveTime: String = "saveTime";
+    static let preShortKey: String = "preShortKey";
+    static let nextShortKey: String = "nextShortKey";
     struct Notification {
        static let clipMenuCountChanged: String = "clipMenuCountChanged";
     }
 }
-
 
 @objcMembers class GlobalVariable: NSObject {
     
@@ -34,6 +36,9 @@ struct JBConstants {
     var menuShowHistory: Int = NSControl.StateValue.on.rawValue;
     var menuSelectPastes: Int = NSControl.StateValue.on.rawValue;
     var saveTime: Int = 0;
+    
+    var preShortKey: JBShortKey = JBShortKey(modifyFlags: cmdKey|shiftKey, keyCode: kVK_ANSI_K, keyCodeStrig: "K");
+    var nextShortKey: JBShortKey = JBShortKey(modifyFlags: cmdKey|shiftKey, keyCode: kVK_ANSI_L, keyCodeStrig: "L");
 
     func readDataFronUserDefault() {
         clipMenuCount = UserDefaults.standard.getIntValue(key: JBConstants.clipMenuCount, defaultValue: clipMenuCount)
@@ -45,6 +50,9 @@ struct JBConstants {
         menuSelectPastes = UserDefaults.standard.getIntValue(key: JBConstants.selectPastes, defaultValue: menuSelectPastes)
         
         saveTime = UserDefaults.standard.getIntValue(key: JBConstants.saveTime, defaultValue: saveTime)
+        
+//        preShortKey = UserDefaults.standard.structData(JBShortKey.self, forKey: JBConstants.preShortKey) ?? preShortKey
+//        nextShortKey = UserDefaults.standard.structData(JBShortKey.self, forKey: JBConstants.nextShortKey) ?? nextShortKey
     }
 }
 
@@ -68,5 +76,18 @@ extension UserDefaults {
         } else {
             return defaultValue
         }
+    }
+    
+    open func setStruct<T: Codable>(_ value: T?, forKey defaultName: String){
+        let data = try? JSONEncoder().encode(value)
+        set(data, forKey: defaultName)
+    }
+    
+    open func structData<T>(_ type: T.Type, forKey defaultName: String) -> T? where T : Decodable {
+        guard let encodedData = data(forKey: defaultName) else {
+            return nil
+        }
+        
+        return try! JSONDecoder().decode(type, from: encodedData)
     }
 }

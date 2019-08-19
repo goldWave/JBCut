@@ -57,9 +57,9 @@ class PreferencesWindowController: NSWindowController, NSToolbarDelegate {
         toolbar.allowsUserCustomization = true
         toolbar.delegate = self
         toolbar.selectedItemIdentifier = toolbarTabsIdentifiers[1]
-//        loadViewWithIdentifier(viewIdentifier: sender.itemIdentifier.rawValue, withAnimation: true)
-        loadViewWithIdentifier(viewIdentifier: toolbar.selectedItemIdentifier?.rawValue ?? "", withAnimation: false)
         self.window?.toolbar = toolbar;
+        loadViewWithIdentifier(viewIdentifier: toolbar.selectedItemIdentifier?.rawValue ?? "", withAnimation: false)
+        
     }
     
     //MARK: - toolbar delegate

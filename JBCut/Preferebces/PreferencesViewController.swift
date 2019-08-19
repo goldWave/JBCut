@@ -40,6 +40,7 @@ class GeneralViewController: NSViewController {
         displayLabel.integerValue = GlobalVariable.shared.displayMenuCount;
         displayStepper.integerValue = GlobalVariable.shared.displayMenuCount;
     }
+    
     //MARK: - action
     @IBAction func launchButtonClick(_ sender: NSButton) {
         GlobalVariable.shared.launchAtLogin = sender.state.rawValue;
@@ -73,7 +74,10 @@ class GeneralViewController: NSViewController {
     }
 }
 
+
 class HotkeysViewController: NSViewController {
+    
+    @IBOutlet weak var preRecordView: JBRecordView!
     
     override var nibName: NSNib.Name? {
         return NSNib.Name("HotkeyView")
@@ -81,11 +85,26 @@ class HotkeysViewController: NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do view setup here.
-        
+        preRecordView.delegate = self
     }
     
 }
+
+extension HotkeysViewController: RecordViewDelegate {
+    func recordViewDidBeginRecord(_ recordView: JBRecordView) {
+        
+    }
+    
+    func recordViewDidFinishRecord(_ recordView: JBRecordView, _ isVaildKey: Bool, _ keyStruct: JBShortKey) {
+        if !isVaildKey {
+            return
+        }
+        
+        GlobalVariable.shared.nextShortKey = keyStruct
+        HotKeyCenter.shared.registerHotkey()
+    }
+}
+
 
 class AppearanceViewController: NSViewController {
     

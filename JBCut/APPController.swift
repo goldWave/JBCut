@@ -62,7 +62,7 @@ class APPController: NSObject, NSMenuDelegate, HotKeyDelegate, NSApplicationDele
         
         /*let copyTimer = */Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerFired), userInfo: nil, repeats: true)
         
-        HotKeyCenter.shared.registerHotKey()
+        HotKeyCenter.shared.registerHotkey()
         HotKeyCenter.shared.delegate = self
         GlobalVariable.shared.readDataFronUserDefault()
         if let unarchivedData = NSKeyedUnarchiver.unarchiveObject(withFile: filePath) as? [ClipData] {
@@ -225,6 +225,7 @@ class APPController: NSObject, NSMenuDelegate, HotKeyDelegate, NSApplicationDele
     
     @IBAction func preferencesClicked(_ sender: Any) {
         if prefsWindwoController.window!.isVisible {
+            prefsWindwoController.window?.makeKeyAndOrderFront(self)
             return
         }
         prefsWindwoController.window?.collectionBehavior = NSWindow.CollectionBehavior.canJoinAllSpaces

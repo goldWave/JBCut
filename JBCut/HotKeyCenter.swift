@@ -9,24 +9,26 @@
 import Cocoa
 import Carbon
 
-
 protocol HotKeyDelegate {
     func hotKeyCliked(isNext: Bool)
 }
 
-class HotKeyCenter: NSObject {
 
+class HotKeyCenter: NSObject {
     public static let shared = HotKeyCenter()
     var delegate : HotKeyDelegate?
-    let nextHotkeyId = EventHotKeyID(signature: 1, id: 1)
-    let preHotkeyId = EventHotKeyID(signature: 2, id: 2)
+    let nextHotkeyId = EventHotKeyID(signature: FourCharCode.init(stringLiteral: "NXHK"), id: 1)
+    let preHotkeyId = EventHotKeyID(signature: FourCharCode.init(stringLiteral: "PRHk"), id: 2)
     
-    public func registerHotKey() {
+    var nextHotkey: EventHotKeyRef? = nil
+    var preHotkey: EventHotKeyRef? = nil
+    
+    public func handleHotKeyEvent() {
         
         var eventType = EventTypeSpec(eventClass: OSType(kEventClassKeyboard), eventKind: OSType(kEventHotKeyPressed))
         InstallEventHandler(GetApplicationEventTarget(), { (nextHander, theEvent, userData) -> OSStatus in
             var hotkeyID = EventHotKeyID()
-            
+            print("handleHotKeyEvent")
             GetEventParameter(theEvent, EventParamName(kEventParamDirectObject), EventParamType(typeEventHotKeyID), nil, MemoryLayout.size(ofValue: EventHotKeyID()), nil, &hotkeyID)
             
             switch GetEventKind(theEvent) {
@@ -40,10 +42,21 @@ class HotKeyCenter: NSObject {
             return noErr
         }, 1, &eventType, nil, nil)
         
-        var hotkey: EventHotKeyRef? = nil
+//        registerHotkey();
+    }
+    
+    private func unRegisterHotkey() {
+        UnregisterEventHotKey(preHotkey)
+        UnregisterEventHotKey(nextHotkey)
+    }
+    
+    public func registerHotkey() {
         
-        RegisterEventHotKey(UInt32(kVK_ANSI_K), UInt32(cmdKey|shiftKey), preHotkeyId, GetApplicationEventTarget(), OptionBits(0), &hotkey)
-        RegisterEventHotKey(UInt32(kVK_ANSI_L), UInt32(cmdKey|shiftKey), nextHotkeyId, GetApplicationEventTarget(), OptionBits(0), &hotkey)
+        unRegisterHotkey();
+        
+        RegisterEventHotKey(UInt32(GlobalVariable.shared.preShortKey.keyCode), UInt32(GlobalVariable.shared.preShortKey.modifyFlags), preHotkeyId, GetApplicationEventTarget(), OptionBits(0), &preHotkey)
+        RegisterEventHotKey(UInt32(GlobalVariable.shared.nextShortKey.keyCode), UInt32(GlobalVariable.shared.nextShortKey.modifyFlags), nextHotkeyId, GetApplicationEventTarget(), OptionBits(0), &nextHotkey)
+        handleHotKeyEvent()
     }
     
     func fakeCommandVWithDelay() {
@@ -64,4 +77,13 @@ class HotKeyCenter: NSObject {
         keyDown?.post(tap: .cgAnnotatedSessionEventTap)
         keyUp?.post(tap: .cgAnnotatedSessionEventTap)
     }
+}
+
+extension FourCharCode: ExpressibleByStringLiteral {
+    
+    public init(stringLiteral value: StringLiteralType) {
+        let value = (value.utf8.count == 4) ? value : "????"
+        self = value.utf8.reduce(0, {$0 << 8 + FourCharCode($1)} )
+    }
+    
 }

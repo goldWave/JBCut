@@ -11,6 +11,7 @@
 		585B209F230403E5009FC658 /* LoginItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 585B209E230403E5009FC658 /* LoginItem.swift */; };
 		585B20A4230508C6009FC658 /* JBRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 585B20A3230508C6009FC658 /* JBRecordView.swift */; };
 		585B20A623054D6A009FC658 /* JBShortcutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 585B20A523054D6A009FC658 /* JBShortcutManager.swift */; };
+		585B20BA2306970E009FC658 /* JBTranslateKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 585B20B92306970E009FC658 /* JBTranslateKey.swift */; };
 		5863B74C23014236002A2AE6 /* GeneralView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5863B74B23014236002A2AE6 /* GeneralView.xib */; };
 		5863B74E23014263002A2AE6 /* PreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5863B74D23014263002A2AE6 /* PreferencesViewController.swift */; };
 		5873CCBB22D5C47B00C266C8 /* NSBezierPath+background.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5873CCBA22D5C47B00C266C8 /* NSBezierPath+background.swift */; };
@@ -62,6 +63,7 @@
 		585B209E230403E5009FC658 /* LoginItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginItem.swift; sourceTree = "<group>"; };
 		585B20A3230508C6009FC658 /* JBRecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JBRecordView.swift; sourceTree = "<group>"; };
 		585B20A523054D6A009FC658 /* JBShortcutManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JBShortcutManager.swift; sourceTree = "<group>"; };
+		585B20B92306970E009FC658 /* JBTranslateKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JBTranslateKey.swift; sourceTree = "<group>"; };
 		5863B74B23014236002A2AE6 /* GeneralView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GeneralView.xib; sourceTree = "<group>"; };
 		5863B74D23014263002A2AE6 /* PreferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesViewController.swift; sourceTree = "<group>"; };
 		5873CCBA22D5C47B00C266C8 /* NSBezierPath+background.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSBezierPath+background.swift"; sourceTree = "<group>"; };
@@ -114,6 +116,7 @@
 			children = (
 				585B20A3230508C6009FC658 /* JBRecordView.swift */,
 				585B20A523054D6A009FC658 /* JBShortcutManager.swift */,
+				585B20B92306970E009FC658 /* JBTranslateKey.swift */,
 			);
 			path = Record;
 			sourceTree = "<group>";
@@ -326,6 +329,7 @@
 			files = (
 				58A0998B22D890AD00159217 /* GlobalVariable.swift in Sources */,
 				585B20A623054D6A009FC658 /* JBShortcutManager.swift in Sources */,
+				585B20BA2306970E009FC658 /* JBTranslateKey.swift in Sources */,
 				5873CCBB22D5C47B00C266C8 /* NSBezierPath+background.swift in Sources */,
 				5863B74E23014263002A2AE6 /* PreferencesViewController.swift in Sources */,
 				58870FEE22CDCF4400496E44 /* ClipData.swift in Sources */,
