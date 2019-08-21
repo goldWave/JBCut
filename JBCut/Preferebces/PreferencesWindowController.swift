@@ -29,25 +29,22 @@ class PreferencesWindowController: NSWindowController, NSToolbarDelegate {
             [
                 ["title": "General",
                  "icon": "net.sf.jumpcut.preferences.general.tiff",
-                 "class": "GeneralViewController",
-                 "identifier": "GeneralViewController"],
+                 "class": JBConstants.generalIdentidier,
+                 "identifier": JBConstants.generalIdentidier],
                 ["title": "Hotkeys",
                  "icon": "net.sf.jumpcut.preferences.hotkey.tiff",
-                 "class": "HotkeysViewController",
-                 "identifier": "HotkeysViewController"],
+                 "class": JBConstants.hotkeysIdentidier,
+                 "identifier": JBConstants.hotkeysIdentidier],
                 ["title": "Appearance",
                  "icon": "net.sf.jumpcut.preferences.appearance.tiff",
-                 "class": "AppearanceViewController",
-                 "identifier": "AppearanceViewController"]
+                 "class": JBConstants.appearanceIdentidier,
+                 "identifier": JBConstants.appearanceIdentidier]
         ];
         return toolbarItemsArray;
     }
     override func windowDidLoad() {
         super.windowDidLoad()
-        
-        //        self.bgView.wantsLayer = true
-        //        self.bgView.layer?.backgroundColor = NSColor.white.cgColor
-        //
+
         for dic in toolbarTabs {
             toolbarTabsIdentifiers.append(NSToolbarItem.Identifier(rawValue: dic["identifier"] ?? ""))
         }
@@ -118,11 +115,11 @@ class PreferencesWindowController: NSWindowController, NSToolbarDelegate {
         currentViewIdentifier = viewIdentifier;
         
         switch viewIdentifier {
-        case "GeneralViewController":
+        case JBConstants.generalIdentidier:
             currentVC = GeneralViewController.init()
-        case "HotkeysViewController":
+        case JBConstants.hotkeysIdentidier:
             currentVC = HotkeysViewController.init()
-        case "AppearanceViewController":
+        case JBConstants.appearanceIdentidier:
             currentVC = AppearanceViewController.init()
         default:
             currentVC = GeneralViewController.init()

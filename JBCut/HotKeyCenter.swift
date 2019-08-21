@@ -54,8 +54,20 @@ class HotKeyCenter: NSObject {
         
         unRegisterHotkey();
         
-        RegisterEventHotKey(UInt32(GlobalVariable.shared.preShortKey.keyCode), UInt32(GlobalVariable.shared.preShortKey.modifyFlags), preHotkeyId, GetApplicationEventTarget(), OptionBits(0), &preHotkey)
-        RegisterEventHotKey(UInt32(GlobalVariable.shared.nextShortKey.keyCode), UInt32(GlobalVariable.shared.nextShortKey.modifyFlags), nextHotkeyId, GetApplicationEventTarget(), OptionBits(0), &nextHotkey)
+//        print("register Pre keyCode: + \(GlobalVariable.shared.preShortKey.keyCode) + flag: \(GlobalVariable.shared.preShortKey.modifyFlags)")
+//        print("register Next keyCode: + \(GlobalVariable.shared.nextShortKey.keyCode) + flag: \(GlobalVariable.shared.nextShortKey.modifyFlags)")
+        print("register Pre keyCode: + \(GlobalVariable.shared.preShortKey)")
+        print("register Next keyCode: + \(GlobalVariable.shared.nextShortKey)")
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            if GlobalVariable.shared.preShortKey.keyCode > 0 {
+                RegisterEventHotKey(UInt32(GlobalVariable.shared.preShortKey.keyCode), UInt32(GlobalVariable.shared.preShortKey.modifyFlags), self.preHotkeyId, GetApplicationEventTarget(), OptionBits(0), &self.preHotkey)
+            }
+            
+            if GlobalVariable.shared.nextShortKey.keyCode > 0 {
+                RegisterEventHotKey(UInt32(GlobalVariable.shared.nextShortKey.keyCode), UInt32(GlobalVariable.shared.nextShortKey.modifyFlags), self.nextHotkeyId, GetApplicationEventTarget(), OptionBits(0), &self.nextHotkey)
+            }
+        }
         handleHotKeyEvent()
     }
     

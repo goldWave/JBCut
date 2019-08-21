@@ -10,6 +10,11 @@ import Cocoa
 import Carbon
 
 struct JBConstants {
+    
+    static let generalIdentidier: String = "GeneralViewController";
+    static let hotkeysIdentidier: String = "HotkeysViewController";
+    static let appearanceIdentidier: String = "AppearanceViewController";
+    
     static let clipMenuCount: String = "clipMenuCount";
     static let displayMenuCount: String = "displayMenuCount";
     static let displayLength: String = "displayLength";
@@ -37,8 +42,8 @@ struct JBConstants {
     var menuSelectPastes: Int = NSControl.StateValue.on.rawValue;
     var saveTime: Int = 0;
     
-    var preShortKey: JBShortKey = JBShortKey(modifyFlags: cmdKey|shiftKey, keyCode: kVK_ANSI_K, keyCodeStrig: "K");
-    var nextShortKey: JBShortKey = JBShortKey(modifyFlags: cmdKey|shiftKey, keyCode: kVK_ANSI_L, keyCodeStrig: "L");
+    var preShortKey: JBShortKey = JBShortKey(modifyFlags: cmdKey|shiftKey, modifyFlagsString: "⇧⌘", keyCode: kVK_ANSI_K, keyCodeStrig: "K");
+    var nextShortKey: JBShortKey = JBShortKey(modifyFlags: cmdKey|shiftKey, modifyFlagsString: "⇧⌘", keyCode: kVK_ANSI_L, keyCodeStrig: "L");
 
     func readDataFronUserDefault() {
         clipMenuCount = UserDefaults.standard.getIntValue(key: JBConstants.clipMenuCount, defaultValue: clipMenuCount)
@@ -51,8 +56,8 @@ struct JBConstants {
         
         saveTime = UserDefaults.standard.getIntValue(key: JBConstants.saveTime, defaultValue: saveTime)
         
-//        preShortKey = UserDefaults.standard.structData(JBShortKey.self, forKey: JBConstants.preShortKey) ?? preShortKey
-//        nextShortKey = UserDefaults.standard.structData(JBShortKey.self, forKey: JBConstants.nextShortKey) ?? nextShortKey
+        preShortKey = UserDefaults.standard.structData(JBShortKey.self, forKey: JBConstants.preShortKey) ?? preShortKey
+        nextShortKey = UserDefaults.standard.structData(JBShortKey.self, forKey: JBConstants.nextShortKey) ?? nextShortKey
     }
 }
 

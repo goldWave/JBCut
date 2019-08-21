@@ -8,7 +8,7 @@
 
 import Cocoa
 
-protocol BezelWindowDelegate {
+protocol BezelWindowDelegate: class {
     func metaKeysReleased()
 }
 
@@ -18,7 +18,7 @@ class BezelWindow: NSPanel {
     private var indexTextField: RoundRexTextfield!
     private var timeTextField: RoundRexTextfield!
     private var iconImageView: NSImageView!
-    var bezeDelegate: BezelWindowDelegate?
+    public weak var  bezeDelegate: BezelWindowDelegate?
     
     
     override var canBecomeKey: Bool {

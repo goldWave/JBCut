@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14835.7" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14835.7"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -29,7 +29,8 @@
                             </connections>
                         </menuItem>
                         <menuItem isSeparatorItem="YES" id="DrQ-pm-mii"/>
-                        <menuItem title="Quit Application" keyEquivalent="q" id="ZaB-N1-1En">
+                        <menuItem title="Quit Application" id="ZaB-N1-1En">
+                            <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
                                 <action selector="quitButtonClick:" target="Voe-Tx-rLC" id="3XV-FL-60g"/>
                             </connections>

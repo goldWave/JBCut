@@ -269,9 +269,9 @@ class APPController: NSObject, NSMenuDelegate, HotKeyDelegate, NSApplicationDele
         }
         nowShowIndex += isNext ? 1 : -1
         //protect the index out of range
-        nowShowIndex = nowShowIndex >= clipArray.count ? (clipArray.count - 1) : nowShowIndex
-        nowShowIndex = nowShowIndex < 0 ? 0 : nowShowIndex
-        
+        nowShowIndex = nowShowIndex >= clipArray.count ? 0 : nowShowIndex
+        nowShowIndex = nowShowIndex < 0 ? (clipArray.count - 1) : nowShowIndex
+        print("nowShowIndex: \(nowShowIndex)")
         if clipArray.count > nowShowIndex && nowShowIndex >= 0 {
             let indexString = String.init(format: "%i of %i", nowShowIndex + 1, clipArray.count)
             self.beze.setCurrentData(data: clipArray[nowShowIndex], indexString: indexString)

@@ -8,6 +8,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="HotkeysViewController" customModule="JBCut" customModuleProvider="target">
             <connections>
+                <outlet property="nextRecordView" destination="Imj-Kg-KSh" id="PuC-kV-1fD"/>
                 <outlet property="preRecordView" destination="lBf-kI-fqq" id="PMI-Sz-7gi"/>
                 <outlet property="view" destination="c22-O7-iKe" id="v6W-Va-ja9"/>
             </connections>
@@ -15,35 +16,92 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView id="c22-O7-iKe">
-            <rect key="frame" x="0.0" y="0.0" width="433" height="396"/>
+            <rect key="frame" x="0.0" y="0.0" width="510" height="395"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lBf-kI-fqq" customClass="JBRecordView" customModule="JBCut" customModuleProvider="target">
-                    <rect key="frame" x="65" y="183" width="247" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="lBf-kI-fqq" customClass="JBRecordView" customModule="JBCut" customModuleProvider="target">
+                    <rect key="frame" x="133" y="259" width="200" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="200" id="KG8-cF-aTG"/>
+                        <constraint firstAttribute="height" constant="30" id="sy5-DU-ZeX"/>
+                    </constraints>
                 </customView>
-                <button verticalHuggingPriority="750" fixedFrame="YES" tag="452435" translatesAutoresizingMaskIntoConstraints="NO" id="egN-h6-eux">
-                    <rect key="frame" x="43" y="307" width="81" height="32"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="cQb-2c-hKq">
-                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                </button>
-                <datePicker verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ne3-74-2Sp">
-                    <rect key="frame" x="65" y="258" width="250" height="27"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <datePickerCell key="cell" borderStyle="bezel" alignment="left" id="88L-Di-JE0">
-                        <font key="font" metaFont="system"/>
-                        <date key="date" timeIntervalSinceReferenceDate="-595929600">
-                            <!--1982-02-12 16:00:00 +0000-->
-                        </date>
-                        <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
-                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                    </datePickerCell>
-                </datePicker>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="Imj-Kg-KSh" customClass="JBRecordView" customModule="JBCut" customModuleProvider="target">
+                    <rect key="frame" x="133" y="162" width="200" height="30"/>
+                </customView>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="jux-BD-kse">
+                    <rect key="frame" x="32" y="358" width="93" height="17"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="Hotkey Usage:" id="Hcu-hr-YYb">
+                        <font key="font" usesAppearanceFont="YES"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1HB-gN-jaa">
+                    <rect key="frame" x="23" y="265" width="102" height="17"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="Forward hotkey:" id="3tg-u1-X44">
+                        <font key="font" usesAppearanceFont="YES"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ghh-bB-pUV">
+                    <rect key="frame" x="12" y="168" width="113" height="17"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="backward Hotkey:" id="Z4h-Oz-dc5">
+                        <font key="font" usesAppearanceFont="YES"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="GuR-mG-FRa">
+                    <rect key="frame" x="48" y="322" width="424" height="28"/>
+                    <textFieldCell key="cell" selectable="YES" enabled="NO" title="Select below filed and type the hotkey you would like to show the clip data window, type Esc key to cancel record this action." id="nBU-tN-egQ">
+                        <font key="font" metaFont="smallSystem"/>
+                        <color key="textColor" name="systemGrayColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="qoB-KD-XOn">
+                    <rect key="frame" x="48" y="223" width="424" height="28"/>
+                    <textFieldCell key="cell" selectable="YES" enabled="NO" title="when type this hotkey will forward to show paste window. For example form index 2 to 1 to show clip data." id="GmY-0M-pRY">
+                        <font key="font" metaFont="smallSystem"/>
+                        <color key="textColor" name="systemGrayColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="oRl-Uw-l6p">
+                    <rect key="frame" x="48" y="126" width="424" height="28"/>
+                    <textFieldCell key="cell" selectable="YES" enabled="NO" title="when type this hotkey will backward to show paste window. For example form index 1 to 2 to show clip data." id="9zo-k0-9WM">
+                        <font key="font" metaFont="smallSystem"/>
+                        <color key="textColor" name="systemGrayColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
             </subviews>
-            <point key="canvasLocation" x="-282.5" y="-123"/>
+            <constraints>
+                <constraint firstItem="GuR-mG-FRa" firstAttribute="leading" secondItem="jux-BD-kse" secondAttribute="leading" constant="16" id="0TN-FF-VaM"/>
+                <constraint firstItem="jux-BD-kse" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="34" id="1u5-ef-TGS"/>
+                <constraint firstItem="Ghh-bB-pUV" firstAttribute="trailing" secondItem="1HB-gN-jaa" secondAttribute="trailing" id="37W-Dj-rSw"/>
+                <constraint firstItem="Imj-Kg-KSh" firstAttribute="height" secondItem="lBf-kI-fqq" secondAttribute="height" id="3UA-le-9fb"/>
+                <constraint firstItem="lBf-kI-fqq" firstAttribute="centerY" secondItem="1HB-gN-jaa" secondAttribute="centerY" id="5SI-xn-WcR"/>
+                <constraint firstItem="oRl-Uw-l6p" firstAttribute="leading" secondItem="qoB-KD-XOn" secondAttribute="leading" id="7jv-m0-IQz"/>
+                <constraint firstItem="jux-BD-kse" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="20" id="97r-b9-D3K"/>
+                <constraint firstItem="Imj-Kg-KSh" firstAttribute="leading" secondItem="lBf-kI-fqq" secondAttribute="leading" id="H0I-Hz-zDy"/>
+                <constraint firstItem="qoB-KD-XOn" firstAttribute="leading" secondItem="GuR-mG-FRa" secondAttribute="leading" id="IyO-WX-fQq"/>
+                <constraint firstItem="Ghh-bB-pUV" firstAttribute="top" secondItem="1HB-gN-jaa" secondAttribute="bottom" constant="80" id="KUI-4D-JjG"/>
+                <constraint firstItem="Imj-Kg-KSh" firstAttribute="centerY" secondItem="Ghh-bB-pUV" secondAttribute="centerY" id="Qw6-ym-RXo"/>
+                <constraint firstItem="qoB-KD-XOn" firstAttribute="top" secondItem="lBf-kI-fqq" secondAttribute="bottom" constant="8" id="U2N-99-y2c"/>
+                <constraint firstItem="oRl-Uw-l6p" firstAttribute="top" secondItem="Imj-Kg-KSh" secondAttribute="bottom" constant="8" id="UNo-Rz-AzV"/>
+                <constraint firstItem="qoB-KD-XOn" firstAttribute="trailing" secondItem="GuR-mG-FRa" secondAttribute="trailing" id="anx-rf-IJv"/>
+                <constraint firstItem="oRl-Uw-l6p" firstAttribute="trailing" secondItem="qoB-KD-XOn" secondAttribute="trailing" id="j4l-7p-W1W"/>
+                <constraint firstItem="Imj-Kg-KSh" firstAttribute="width" secondItem="lBf-kI-fqq" secondAttribute="width" id="mep-oX-SBT"/>
+                <constraint firstAttribute="trailing" secondItem="GuR-mG-FRa" secondAttribute="trailing" constant="40" id="n6h-K2-mbC"/>
+                <constraint firstItem="1HB-gN-jaa" firstAttribute="top" secondItem="GuR-mG-FRa" secondAttribute="bottom" constant="40" id="rTl-UR-Qr8"/>
+                <constraint firstItem="GuR-mG-FRa" firstAttribute="top" secondItem="jux-BD-kse" secondAttribute="bottom" constant="8" id="rb3-do-q5w"/>
+                <constraint firstItem="lBf-kI-fqq" firstAttribute="leading" secondItem="1HB-gN-jaa" secondAttribute="trailing" constant="10" id="skF-I1-ICO"/>
+                <constraint firstItem="1HB-gN-jaa" firstAttribute="trailing" secondItem="jux-BD-kse" secondAttribute="trailing" id="zAT-Xl-yV2"/>
+            </constraints>
+            <point key="canvasLocation" x="-684" y="-189.5"/>
         </customView>
     </objects>
 </document>

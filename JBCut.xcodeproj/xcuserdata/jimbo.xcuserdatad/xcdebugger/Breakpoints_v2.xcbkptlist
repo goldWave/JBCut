@@ -74,16 +74,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "JBCut/Record/JBRecordView.swift"
-            timestampString = "587894344.1223969"
+            filePath = "JBCut/HotKeyCenter.swift"
+            timestampString = "588050718.257429"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "55"
-            endingLineNumber = "55"
-            landmarkName = "resignFirstResponder()"
+            startingLineNumber = "79"
+            endingLineNumber = "79"
+            landmarkName = "fakeCommandV()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

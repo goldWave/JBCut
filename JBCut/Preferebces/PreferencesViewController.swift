@@ -79,15 +79,20 @@ class HotkeysViewController: NSViewController {
     
     @IBOutlet weak var preRecordView: JBRecordView!
     
+    @IBOutlet weak var nextRecordView: JBRecordView!
+    
     override var nibName: NSNib.Name? {
         return NSNib.Name("HotkeyView")
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        preRecordView.hotKey = GlobalVariable.shared.preShortKey
         preRecordView.delegate = self
+        
+        nextRecordView.hotKey = GlobalVariable.shared.nextShortKey
+        nextRecordView.delegate = self
     }
-    
 }
 
 extension HotkeysViewController: RecordViewDelegate {
@@ -100,7 +105,14 @@ extension HotkeysViewController: RecordViewDelegate {
             return
         }
         
-        GlobalVariable.shared.nextShortKey = keyStruct
+        if recordView == self.preRecordView {
+            GlobalVariable.shared.preShortKey = keyStruct
+            UserDefaults.standard.setStruct(keyStruct, forKey: JBConstants.preShortKey)
+        } else {
+            GlobalVariable.shared.nextShortKey = keyStruct
+            UserDefaults.standard.setStruct(keyStruct, forKey: JBConstants.nextShortKey)
+        }
+        
         HotKeyCenter.shared.registerHotkey()
     }
 }
