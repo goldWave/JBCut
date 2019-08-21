@@ -81,6 +81,8 @@ class HotkeysViewController: NSViewController {
     
     @IBOutlet weak var nextRecordView: JBRecordView!
     
+    @IBOutlet weak var imageButton: NSButton!
+
     override var nibName: NSNib.Name? {
         return NSNib.Name("HotkeyView")
     }

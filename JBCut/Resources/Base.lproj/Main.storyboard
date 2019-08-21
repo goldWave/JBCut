@@ -29,8 +29,7 @@
                             </connections>
                         </menuItem>
                         <menuItem isSeparatorItem="YES" id="DrQ-pm-mii"/>
-                        <menuItem title="Quit Application" id="ZaB-N1-1En">
-                            <modifierMask key="keyEquivalentModifierMask"/>
+                        <menuItem title="Quit Application" keyEquivalent="q" id="ZaB-N1-1En">
                             <connections>
                                 <action selector="quitButtonClick:" target="Voe-Tx-rLC" id="3XV-FL-60g"/>
                             </connections>

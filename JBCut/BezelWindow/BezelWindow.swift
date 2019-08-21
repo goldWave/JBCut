@@ -20,7 +20,6 @@ class BezelWindow: NSPanel {
     private var iconImageView: NSImageView!
     public weak var  bezeDelegate: BezelWindowDelegate?
     
-    
     override var canBecomeKey: Bool {
         return true
     }
@@ -45,7 +44,7 @@ class BezelWindow: NSPanel {
        
     }
     
-    func setupSubView() {
+    private func setupSubView() {
         contentTextField = RoundRexTextfield.init(frame: NSMakeRect(12, 12, self.frame.width - 24, 8 * 16))
         contentTextField.textColor = NSColor.white
         contentTextField.isEnabled = false

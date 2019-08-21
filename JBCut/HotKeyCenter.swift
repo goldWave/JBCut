@@ -54,8 +54,6 @@ class HotKeyCenter: NSObject {
         
         unRegisterHotkey();
         
-//        print("register Pre keyCode: + \(GlobalVariable.shared.preShortKey.keyCode) + flag: \(GlobalVariable.shared.preShortKey.modifyFlags)")
-//        print("register Next keyCode: + \(GlobalVariable.shared.nextShortKey.keyCode) + flag: \(GlobalVariable.shared.nextShortKey.modifyFlags)")
         print("register Pre keyCode: + \(GlobalVariable.shared.preShortKey)")
         print("register Next keyCode: + \(GlobalVariable.shared.nextShortKey)")
         

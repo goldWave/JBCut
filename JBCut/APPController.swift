@@ -62,9 +62,10 @@ class APPController: NSObject, NSMenuDelegate, HotKeyDelegate, NSApplicationDele
         
         /*let copyTimer = */Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerFired), userInfo: nil, repeats: true)
         
+//        GlobalVariable.shared.readDataFronUserDefault()
         HotKeyCenter.shared.registerHotkey()
         HotKeyCenter.shared.delegate = self
-        GlobalVariable.shared.readDataFronUserDefault()
+        
         if let unarchivedData = NSKeyedUnarchiver.unarchiveObject(withFile: filePath) as? [ClipData] {
             clipArray = unarchivedData
         }
