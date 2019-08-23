@@ -12,6 +12,11 @@ Because the jumpcut is not support 64bit, so develop the JBCut for use.
 - xcode 10.3
 - swift 5.0.1
 
+# Package
+v1.0.0 is the fist version
+
+[Download v1.0.0 release](https://github.com/goldWave/JBCut/releases/tag/v1.0.0)
+
 # Usage
 - JBCut will store the code piece your copied. And Use `Shift-Command-V` of `Shift-Command-K` to search the clip histoy，when release the modify flags kyes (`Shift Command Option Ctrl`) will paste this code.
 - you can also use the custom hotkey which is defined in preferences to paste it.
