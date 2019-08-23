@@ -28,7 +28,6 @@ class HotKeyCenter: NSObject {
         var eventType = EventTypeSpec(eventClass: OSType(kEventClassKeyboard), eventKind: OSType(kEventHotKeyPressed))
         InstallEventHandler(GetApplicationEventTarget(), { (nextHander, theEvent, userData) -> OSStatus in
             var hotkeyID = EventHotKeyID()
-            print("handleHotKeyEvent")
             GetEventParameter(theEvent, EventParamName(kEventParamDirectObject), EventParamType(typeEventHotKeyID), nil, MemoryLayout.size(ofValue: EventHotKeyID()), nil, &hotkeyID)
             
             switch GetEventKind(theEvent) {
@@ -41,8 +40,6 @@ class HotKeyCenter: NSObject {
             
             return noErr
         }, 1, &eventType, nil, nil)
-        
-//        registerHotkey();
     }
     
     private func unRegisterHotkey() {
@@ -69,23 +66,27 @@ class HotKeyCenter: NSObject {
         handleHotKeyEvent()
     }
     
-    func fakeCommandVWithDelay() {
-        self.perform(#selector(fakeCommandV), with: nil, afterDelay: 0.2)
+    func fakeCommandVWithDelay() -> Bool {
+        if !JBAccessManager.checkAccessibility() {
+            return false
+        }
+        self.perform(#selector(fakeCommandV), with: nil, afterDelay: 0.1)
+        return true
     }
     
     @objc private func fakeCommandV() {
-//        let source = CGEventSource(stateID: .combinedSessionState)
-//        //disabel local keyboard click
-//        source?.setLocalEventsFilterDuringSuppressionState([.permitLocalKeyboardEvents, .permitSystemDefinedEvents], state: .eventSuppressionStateSuppressionInterval)
-//        //press command + v
-//        let keyDown = CGEvent(keyboardEventSource: source, virtualKey: CGKeyCode(kVK_ANSI_V), keyDown: true)
-//        keyDown?.flags = .maskCommand
-//        //release command + v
-//        let keyUp = CGEvent(keyboardEventSource: source, virtualKey: CGKeyCode(kVK_ANSI_V), keyDown: false)
-//        keyUp?.flags = .maskCommand
-//        //post paste command
-//        keyDown?.post(tap: .cgAnnotatedSessionEventTap)
-//        keyUp?.post(tap: .cgAnnotatedSessionEventTap)
+        let source = CGEventSource(stateID: .combinedSessionState)
+        //disabel local keyboard click
+        source?.setLocalEventsFilterDuringSuppressionState([.permitLocalKeyboardEvents, .permitSystemDefinedEvents], state: .eventSuppressionStateSuppressionInterval)
+        //press command + v
+        let keyDown = CGEvent(keyboardEventSource: source, virtualKey: CGKeyCode(kVK_ANSI_V), keyDown: true)
+        keyDown?.flags = .maskCommand
+        //release command + v
+        let keyUp = CGEvent(keyboardEventSource: source, virtualKey: CGKeyCode(kVK_ANSI_V), keyDown: false)
+        keyUp?.flags = .maskCommand
+        //post paste command
+        keyDown?.post(tap: .cgAnnotatedSessionEventTap)
+        keyUp?.post(tap: .cgAnnotatedSessionEventTap)
     }
 }
 
@@ -95,5 +96,4 @@ extension FourCharCode: ExpressibleByStringLiteral {
         let value = (value.utf8.count == 4) ? value : "????"
         self = value.utf8.reduce(0, {$0 << 8 + FourCharCode($1)} )
     }
-    
 }

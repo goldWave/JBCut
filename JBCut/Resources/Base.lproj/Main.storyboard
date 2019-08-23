@@ -28,6 +28,12 @@
                                 <action selector="preferencesClicked:" target="Voe-Tx-rLC" id="4hY-91-Gdf"/>
                             </connections>
                         </menuItem>
+                        <menuItem title="About" id="OYu-qJ-DwK">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <action selector="aboutButtonClick:" target="Voe-Tx-rLC" id="7iE-cV-Y66"/>
+                            </connections>
+                        </menuItem>
                         <menuItem isSeparatorItem="YES" id="DrQ-pm-mii"/>
                         <menuItem title="Quit Application" keyEquivalent="q" id="ZaB-N1-1En">
                             <connections>

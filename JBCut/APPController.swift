@@ -33,6 +33,7 @@ class APPController: NSObject, NSMenuDelegate, HotKeyDelegate, NSApplicationDele
     private let jbPastBoard = NSPasteboard.general
     private var isMenuOpened = false
     private var prefsWindwoController = PreferencesWindowController.init()
+    private var aboutWindwoController = JBAboutWindowController.init()
     
     lazy var beze: BezelWindow = {
         () -> BezelWindow in
@@ -60,21 +61,16 @@ class APPController: NSObject, NSMenuDelegate, HotKeyDelegate, NSApplicationDele
         
         mainMenu.delegate = self
         
-        /*let copyTimer = */Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerFired), userInfo: nil, repeats: true)
-        
-//        GlobalVariable.shared.readDataFronUserDefault()
+        Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerFired), userInfo: nil, repeats: true)
         HotKeyCenter.shared.registerHotkey()
         HotKeyCenter.shared.delegate = self
-        
+
         if let unarchivedData = NSKeyedUnarchiver.unarchiveObject(withFile: filePath) as? [ClipData] {
             clipArray = unarchivedData
         }
         updateClipMenu()
-        
-        preferencesClicked(statusItem)
         addNotificationObsever()
     }
-    
     
     func addNotificationObsever() {
         NotificationCenter.default.addObserver(self, selector: #selector(checkIsOutData), name: NSNotification.Name(rawValue: JBConstants.Notification.clipMenuCountChanged), object: nil)
@@ -152,6 +148,7 @@ class APPController: NSObject, NSMenuDelegate, HotKeyDelegate, NSApplicationDele
     @objc func appHide() {
         hideBezeWindow()
         prefsWindwoController.window?.orderOut(nil)
+        aboutWindwoController.window?.orderOut(nil)
         NSApp.hide(self)
     }
     
@@ -216,11 +213,13 @@ class APPController: NSObject, NSMenuDelegate, HotKeyDelegate, NSApplicationDele
     //MARK: - menu clicked
     @objc func processMenuClippingSelection(sender: NSMenuItem) {
         nowShowIndex = sender.menu?.index(of: sender) ?? 0
-        self.perform(#selector(appHide), with: nil, afterDelay: 0)
         moveClipDateToTop(index: nowShowIndex)
         if GlobalVariable.shared.menuSelectPastes == NSControl.StateValue.on.rawValue {
-            HotKeyCenter.shared.fakeCommandVWithDelay()
+            if !HotKeyCenter.shared.fakeCommandVWithDelay() {
+                return
+            }
         }
+        self.perform(#selector(appHide), with: nil, afterDelay: 0)
     }
     
     @IBAction func clearAllData(_ sender: Any) {
@@ -230,19 +229,34 @@ class APPController: NSObject, NSMenuDelegate, HotKeyDelegate, NSApplicationDele
     
     @IBAction func preferencesClicked(_ sender: Any) {
         if prefsWindwoController.window!.isVisible {
-            prefsWindwoController.window?.makeKeyAndOrderFront(self)
+            NSApp.activate(ignoringOtherApps: true)
             return
         }
+        
         prefsWindwoController.window?.collectionBehavior = NSWindow.CollectionBehavior.canJoinAllSpaces
         prefsWindwoController.window?.center()
         NSApp.activate(ignoringOtherApps: true)
         prefsWindwoController.window?.makeKeyAndOrderFront(self)
     }
+    
+    @IBAction func aboutButtonClick(_ sender: Any) {
+        if aboutWindwoController.window?.isVisible ?? false {
+            NSApp.activate(ignoringOtherApps: true)
+            return
+        }
+        
+        aboutWindwoController.window?.collectionBehavior = NSWindow.CollectionBehavior.canJoinAllSpaces
+        aboutWindwoController.window?.center()
+        NSApp.activate(ignoringOtherApps: true)
+        aboutWindwoController.window?.makeKeyAndOrderFront(self)
+    }
+    
     //MARK: - hotkey cliked
     func pasteFromStack() {
-        self.perform(#selector(appHide), with: nil, afterDelay: 0.2)
         moveClipDateToTop(index: nowShowIndex)
-        HotKeyCenter.shared.fakeCommandVWithDelay()
+        if HotKeyCenter.shared.fakeCommandVWithDelay() {
+            self.perform(#selector(appHide), with: nil, afterDelay: 0)
+        }
     }
     
     func moveClipDateToTop(index: Int) {
@@ -276,7 +290,6 @@ class APPController: NSObject, NSMenuDelegate, HotKeyDelegate, NSApplicationDele
         //protect the index out of range
         nowShowIndex = nowShowIndex >= clipArray.count ? 0 : nowShowIndex
         nowShowIndex = nowShowIndex < 0 ? (clipArray.count - 1) : nowShowIndex
-        print("nowShowIndex: \(nowShowIndex)")
         if clipArray.count > nowShowIndex && nowShowIndex >= 0 {
             let indexString = String.init(format: "%i of %i", nowShowIndex + 1, clipArray.count)
             self.beze.setCurrentData(data: clipArray[nowShowIndex], indexString: indexString)
@@ -293,14 +306,12 @@ class APPController: NSObject, NSMenuDelegate, HotKeyDelegate, NSApplicationDele
     
     //MARK: - NSMenuDelegate
     func menuWillOpen(_ menu: NSMenu) {
-        print("menu will open")
         timerFired()
         updateClipMenu()
         isMenuOpened = true
     }
     
     func menuDidClose(_ menu: NSMenu) {
-        print("menu did open")
         isMenuOpened = false
     }
 }

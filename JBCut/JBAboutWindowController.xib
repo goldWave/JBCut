@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="JBAboutWindowController" customModule="JBCut" customModuleProvider="target">
+            <connections>
+                <outlet property="versionLabel" destination="4rD-PM-geL" id="5Rj-RW-r61"/>
+                <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <window allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" releasedWhenClosed="NO" animationBehavior="default" id="F0z-JX-Cv5">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
+            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+            <rect key="contentRect" x="196" y="240" width="300" height="200"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
+            <view key="contentView" id="se5-gp-TjO">
+                <rect key="frame" x="0.0" y="0.0" width="300" height="200"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YcP-7R-EiK">
+                        <rect key="frame" x="115" y="110" width="70" height="70"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="70" id="Ywb-VN-cnI"/>
+                            <constraint firstAttribute="width" constant="70" id="pl8-ms-foy"/>
+                        </constraints>
+                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="big_icon" id="B03-D1-P2L"/>
+                    </imageView>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="BK2-Tu-be5">
+                        <rect key="frame" x="124" y="77" width="52" height="19"/>
+                        <textFieldCell key="cell" lineBreakMode="clipping" title="JBCut" id="B0H-zb-Eie">
+                            <font key="font" metaFont="systemBold" size="16"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="4rD-PM-geL">
+                        <rect key="frame" x="98" y="54" width="105" height="17"/>
+                        <textFieldCell key="cell" lineBreakMode="clipping" title="version 1.0.0.001" id="wPd-B8-Nlk">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="241-Dd-q3L">
+                        <rect key="frame" x="92" y="31" width="116" height="17"/>
+                        <textFieldCell key="cell" lineBreakMode="clipping" title="@ Goldwave, 2019" id="GWt-iW-3Vf">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="4rD-PM-geL" firstAttribute="centerX" secondItem="BK2-Tu-be5" secondAttribute="centerX" id="B0l-qr-IDQ"/>
+                    <constraint firstItem="BK2-Tu-be5" firstAttribute="top" secondItem="YcP-7R-EiK" secondAttribute="bottom" constant="14" id="DYc-gx-n2C"/>
+                    <constraint firstItem="BK2-Tu-be5" firstAttribute="centerX" secondItem="YcP-7R-EiK" secondAttribute="centerX" id="ECW-hZ-9f9"/>
+                    <constraint firstItem="241-Dd-q3L" firstAttribute="top" secondItem="4rD-PM-geL" secondAttribute="bottom" constant="6" id="LUt-Fp-2Qx"/>
+                    <constraint firstItem="241-Dd-q3L" firstAttribute="centerX" secondItem="4rD-PM-geL" secondAttribute="centerX" id="NZU-VK-MHv"/>
+                    <constraint firstItem="4rD-PM-geL" firstAttribute="top" secondItem="BK2-Tu-be5" secondAttribute="bottom" constant="6" id="Nrj-a9-Uas"/>
+                    <constraint firstItem="YcP-7R-EiK" firstAttribute="centerX" secondItem="se5-gp-TjO" secondAttribute="centerX" id="bui-1n-YDq"/>
+                    <constraint firstItem="YcP-7R-EiK" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" constant="20" id="n1b-oW-D6H"/>
+                </constraints>
+            </view>
+            <connections>
+                <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
+            </connections>
+        </window>
+    </objects>
+    <resources>
+        <image name="big_icon" width="100" height="100"/>
+    </resources>
+</document>

@@ -144,7 +144,7 @@ class AppearanceViewController: NSViewController {
         let clip = ClipData.init()
         clip.appIconPath = "/Applications/TextEdit.app"
         clip.clipString = "Display data copy from TextEdit"
-        bezelView.setCurrentData(data: clip, indexString: "1")
+        bezelView.setCurrentData(data: clip, indexString: "1 of 1")
         
         showTimeButton.state = NSButton.StateValue.init(GlobalVariable.shared.showClipTime)
         showIndexButton.state = NSButton.StateValue.init(GlobalVariable.shared.showClipIndex)

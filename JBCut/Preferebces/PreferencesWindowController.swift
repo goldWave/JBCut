@@ -9,9 +9,7 @@
 import Cocoa
 
 class PreferencesWindowController: NSWindowController, NSToolbarDelegate {
-    
-    @IBOutlet weak var bgView: NSView!
-    
+        
     override var windowNibName: NSNib.Name? {
         return NSNib.Name("PreferencesWindowController")
     }
@@ -53,7 +51,7 @@ class PreferencesWindowController: NSWindowController, NSToolbarDelegate {
         
         toolbar.allowsUserCustomization = true
         toolbar.delegate = self
-        toolbar.selectedItemIdentifier = toolbarTabsIdentifiers[2]
+        toolbar.selectedItemIdentifier = toolbarTabsIdentifiers[0]
         self.window?.toolbar = toolbar;
         loadViewWithIdentifier(viewIdentifier: toolbar.selectedItemIdentifier?.rawValue ?? "", withAnimation: false)
         

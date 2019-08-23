@@ -8,7 +8,6 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="PreferencesWindowController" customModule="JBCut" customModuleProvider="target">
             <connections>
-                <outlet property="bgView" destination="se5-gp-TjO" id="6c5-TD-ToS"/>
                 <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
             </connections>
         </customObject>

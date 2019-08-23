@@ -14,6 +14,9 @@
 		585B20BA2306970E009FC658 /* JBTranslateKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 585B20B92306970E009FC658 /* JBTranslateKey.swift */; };
 		585B20E6230B93F0009FC658 /* NSColor+HexString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 585B20E5230B93F0009FC658 /* NSColor+HexString.swift */; };
 		585B211A230E3BD5009FC658 /* BezelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 585B2119230E3BD5009FC658 /* BezelView.swift */; };
+		585B211C230FC5D7009FC658 /* JBAccessManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 585B211B230FC5D7009FC658 /* JBAccessManager.swift */; };
+		585B2125230FCD8E009FC658 /* JBAboutWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 585B2123230FCD8E009FC658 /* JBAboutWindowController.swift */; };
+		585B2126230FCD8E009FC658 /* JBAboutWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 585B2124230FCD8E009FC658 /* JBAboutWindowController.xib */; };
 		5863B74C23014236002A2AE6 /* GeneralView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5863B74B23014236002A2AE6 /* GeneralView.xib */; };
 		5863B74E23014263002A2AE6 /* PreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5863B74D23014263002A2AE6 /* PreferencesViewController.swift */; };
 		5873CCBB22D5C47B00C266C8 /* NSBezierPath+background.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5873CCBA22D5C47B00C266C8 /* NSBezierPath+background.swift */; };
@@ -68,6 +71,9 @@
 		585B20B92306970E009FC658 /* JBTranslateKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JBTranslateKey.swift; sourceTree = "<group>"; };
 		585B20E5230B93F0009FC658 /* NSColor+HexString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSColor+HexString.swift"; sourceTree = "<group>"; };
 		585B2119230E3BD5009FC658 /* BezelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BezelView.swift; sourceTree = "<group>"; };
+		585B211B230FC5D7009FC658 /* JBAccessManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JBAccessManager.swift; sourceTree = "<group>"; };
+		585B2123230FCD8E009FC658 /* JBAboutWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JBAboutWindowController.swift; sourceTree = "<group>"; };
+		585B2124230FCD8E009FC658 /* JBAboutWindowController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JBAboutWindowController.xib; sourceTree = "<group>"; };
 		5863B74B23014236002A2AE6 /* GeneralView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GeneralView.xib; sourceTree = "<group>"; };
 		5863B74D23014263002A2AE6 /* PreferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesViewController.swift; sourceTree = "<group>"; };
 		5873CCBA22D5C47B00C266C8 /* NSBezierPath+background.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSBezierPath+background.swift"; sourceTree = "<group>"; };
@@ -191,6 +197,9 @@
 				58870FED22CDCF4400496E44 /* ClipData.swift */,
 				58A0998A22D890AD00159217 /* GlobalVariable.swift */,
 				585B209E230403E5009FC658 /* LoginItem.swift */,
+				585B211B230FC5D7009FC658 /* JBAccessManager.swift */,
+				585B2123230FCD8E009FC658 /* JBAboutWindowController.swift */,
+				585B2124230FCD8E009FC658 /* JBAboutWindowController.xib */,
 				585B20A72305511F009FC658 /* Record */,
 				5863B74A23013DB4002A2AE6 /* Preferebces */,
 				5873CCB822D5C3B600C266C8 /* BezelWindow */,
@@ -313,6 +322,7 @@
 				58B1AF0B22CB332F00C89530 /* Main.storyboard in Resources */,
 				58A5EA4C22FC127100E92314 /* net.sf.jumpcut.preferences.general.tiff in Resources */,
 				58A5EA4A22FC127100E92314 /* net.sf.jumpcut.preferences.hotkey.tiff in Resources */,
+				585B2126230FCD8E009FC658 /* JBAboutWindowController.xib in Resources */,
 				58EF4A6023024D80009BEFEB /* HotkeyView.xib in Resources */,
 				5863B74C23014236002A2AE6 /* GeneralView.xib in Resources */,
 			);
@@ -341,7 +351,9 @@
 				5873CCBB22D5C47B00C266C8 /* NSBezierPath+background.swift in Sources */,
 				5863B74E23014263002A2AE6 /* PreferencesViewController.swift in Sources */,
 				58870FEE22CDCF4400496E44 /* ClipData.swift in Sources */,
+				585B2125230FCD8E009FC658 /* JBAboutWindowController.swift in Sources */,
 				584D3B0B22CC8C1B00F2B0D3 /* BezelWindow.swift in Sources */,
+				585B211C230FC5D7009FC658 /* JBAccessManager.swift in Sources */,
 				58EB30D222D2DC630056DBB2 /* RoundRexTextfield.swift in Sources */,
 				585B209F230403E5009FC658 /* LoginItem.swift in Sources */,
 				58870FEC22CDAA9100496E44 /* HotKeyCenter.swift in Sources */,
