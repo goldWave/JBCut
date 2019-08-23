@@ -10,7 +10,7 @@ import Cocoa
 
 
 class GeneralViewController: NSViewController {
-        
+    
     @IBOutlet weak var launchButton: NSButton!
     
     @IBOutlet weak var showMenuButton: NSButton!
@@ -81,8 +81,6 @@ class HotkeysViewController: NSViewController {
     
     @IBOutlet weak var nextRecordView: JBRecordView!
     
-    @IBOutlet weak var imageButton: NSButton!
-
     override var nibName: NSNib.Name? {
         return NSNib.Name("HotkeyView")
     }
@@ -122,12 +120,79 @@ extension HotkeysViewController: RecordViewDelegate {
 
 class AppearanceViewController: NSViewController {
     
+    @IBOutlet weak var bezelView: BezelView!
+    @IBOutlet weak var bgImageView: NSImageView!
+    @IBOutlet weak var showTimeButton: NSButton!
+    @IBOutlet weak var showIndexButton: NSButton!
+    @IBOutlet weak var showIconButton: NSPopUpButton!
+    @IBOutlet weak var winBgColorWell: NSColorWell!
+    @IBOutlet weak var textBgColorWell: NSColorWell!
+    
     override var nibName: NSNib.Name? {
         return NSNib.Name("AppearanceView")
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do view setup here.
+        
+        NSColorPanel.shared.showsAlpha = true;
+        
+        self.winBgColorWell.color = GlobalVariable.shared.winBgColor
+        self.textBgColorWell.color = GlobalVariable.shared.textBgColor
+        
+        bgImageView.image = NSImage(contentsOfFile: "/Library/Desktop Pictures/Yosemite 4.jpg")
+        let clip = ClipData.init()
+        clip.appIconPath = "/Applications/TextEdit.app"
+        clip.clipString = "Display data copy from TextEdit"
+        bezelView.setCurrentData(data: clip, indexString: "1")
+        
+        showTimeButton.state = NSButton.StateValue.init(GlobalVariable.shared.showClipTime)
+        showIndexButton.state = NSButton.StateValue.init(GlobalVariable.shared.showClipIndex)
+        showIconButton.selectItem(at: GlobalVariable.shared.showClipIcon)
+    }
+    
+    @IBAction func showTimeButtonClick(_ sender: NSButton) {
+        GlobalVariable.shared.showClipTime = sender.state.rawValue;
+        UserDefaults.standard.set(GlobalVariable.shared.showClipTime, forKey: JBConstants.showClipTime)
+        bezelView.reassembleSubView()
+    }
+    
+    @IBAction func showIndexButtonClick(_ sender: NSButton) {
+        GlobalVariable.shared.showClipIndex = sender.state.rawValue;
+        UserDefaults.standard.set(GlobalVariable.shared.showClipIndex, forKey: JBConstants.showClipIndex)
+        bezelView.reassembleSubView()
+    }
+    
+    @IBAction func showIconButtonClick(_ sender: NSPopUpButton) {
+        GlobalVariable.shared.showClipIcon = sender.indexOfSelectedItem;
+        UserDefaults.standard.set(GlobalVariable.shared.showClipIcon, forKey: JBConstants.showClipIcon)
+        bezelView.reassembleSubView()
+    }
+    
+    @IBAction func winbgColorSelect(_ sender: NSColorWell) {
+        GlobalVariable.shared.winBgColor = sender.color
+        UserDefaults.standard.setColor(sender.color, forKey: JBConstants.winBgColor)
+        self.bezelView.changeBgColor()
+    }
+    
+    @IBAction func textBgColorSelect(_ sender: NSColorWell) {
+        GlobalVariable.shared.textBgColor = sender.color
+        UserDefaults.standard.setColor(sender.color, forKey: JBConstants.textBgColor)
+        self.bezelView.changeBgColor()
+    }
+    
+    @IBAction func setWinBgColorClick(_ sender: NSButton) {
+        
+        GlobalVariable.shared.winBgColor = NSColor.init(white: 0.2, alpha: 0.85)
+        UserDefaults.standard.setColor( GlobalVariable.shared.winBgColor, forKey: JBConstants.winBgColor)
+        self.winBgColorWell.color = GlobalVariable.shared.winBgColor
+        self.bezelView.changeBgColor()
+    }
+    @IBAction func setTextBgColorClick(_ sender: Any) {
+        GlobalVariable.shared.textBgColor = NSColor.init(white: 0.1, alpha: 0.45)
+        UserDefaults.standard.setColor( GlobalVariable.shared.textBgColor, forKey: JBConstants.textBgColor)
+        self.textBgColorWell.color = GlobalVariable.shared.textBgColor
+        self.bezelView.changeBgColor()
     }
 }
+

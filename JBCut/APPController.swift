@@ -45,7 +45,7 @@ class APPController: NSObject, NSMenuDelegate, HotKeyDelegate, NSApplicationDele
     
     override func awakeFromNib() {
         if NSRunningApplication.runningApplications(withBundleIdentifier: Bundle.main.bundleIdentifier ?? "").count > 1 {
-            print("only run one app, so terminate self")
+            print("only run one applicaiton, so terminate self")
             NSApp.terminate(nil)
             return;
         }
@@ -98,6 +98,8 @@ class APPController: NSObject, NSMenuDelegate, HotKeyDelegate, NSApplicationDele
             clipArray.first?.clipString != clipString
         {
             let data = ClipData.init()
+            
+            data.appIconPath = NSWorkspace.shared.runningApplications.filter({$0.isActive}).first?.bundleURL?.path ?? ""
             data.clipString = clipString
             data.timeStamp = Int(NSDate().timeIntervalSince1970)
             clipArray.insert(data, at: 0)
@@ -123,13 +125,15 @@ class APPController: NSObject, NSMenuDelegate, HotKeyDelegate, NSApplicationDele
         if self.beze.isVisible {
             return
         }
+        
         if clipArray.count > nowShowIndex && nowShowIndex >= 0 {
             let indexString = String.init(format: "%i of %i", nowShowIndex + 1, clipArray.count)
             self.beze.setCurrentData(data: clipArray[nowShowIndex], indexString: indexString)
         }
         
         self.beze.adjustWindowToCenter()
-        
+        self.beze.reassembleSubView()
+        self.beze.changeBgColor()
         NSApp.activate(ignoringOtherApps: true)
         self.beze.makeKeyAndOrderFront(nil)
     }

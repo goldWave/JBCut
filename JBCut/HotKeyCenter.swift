@@ -74,18 +74,18 @@ class HotKeyCenter: NSObject {
     }
     
     @objc private func fakeCommandV() {
-        let source = CGEventSource(stateID: .combinedSessionState)
-        //disabel local keyboard click
-        source?.setLocalEventsFilterDuringSuppressionState([.permitLocalKeyboardEvents, .permitSystemDefinedEvents], state: .eventSuppressionStateSuppressionInterval)
-        //press command + v
-        let keyDown = CGEvent(keyboardEventSource: source, virtualKey: CGKeyCode(kVK_ANSI_V), keyDown: true)
-        keyDown?.flags = .maskCommand
-        //release command + v
-        let keyUp = CGEvent(keyboardEventSource: source, virtualKey: CGKeyCode(kVK_ANSI_V), keyDown: false)
-        keyUp?.flags = .maskCommand
-        //post paste command
-        keyDown?.post(tap: .cgAnnotatedSessionEventTap)
-        keyUp?.post(tap: .cgAnnotatedSessionEventTap)
+//        let source = CGEventSource(stateID: .combinedSessionState)
+//        //disabel local keyboard click
+//        source?.setLocalEventsFilterDuringSuppressionState([.permitLocalKeyboardEvents, .permitSystemDefinedEvents], state: .eventSuppressionStateSuppressionInterval)
+//        //press command + v
+//        let keyDown = CGEvent(keyboardEventSource: source, virtualKey: CGKeyCode(kVK_ANSI_V), keyDown: true)
+//        keyDown?.flags = .maskCommand
+//        //release command + v
+//        let keyUp = CGEvent(keyboardEventSource: source, virtualKey: CGKeyCode(kVK_ANSI_V), keyDown: false)
+//        keyUp?.flags = .maskCommand
+//        //post paste command
+//        keyDown?.post(tap: .cgAnnotatedSessionEventTap)
+//        keyUp?.post(tap: .cgAnnotatedSessionEventTap)
     }
 }
 

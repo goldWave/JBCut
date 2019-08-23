@@ -12,6 +12,7 @@ class ClipData: NSObject, NSCoding {
     
     var clipString: String
     var timeStamp: Int
+    var appIconPath: String
     
     var displayMenuString: String {
         get {
@@ -32,8 +33,9 @@ class ClipData: NSObject, NSCoding {
     }
     
     override init() {
-        clipString = ""
+        clipString = "Display data"
         timeStamp = Int(NSDate().timeIntervalSince1970)
+        appIconPath = Bundle.main.bundlePath
         super.init()
     }
     
@@ -41,11 +43,13 @@ class ClipData: NSObject, NSCoding {
         
         clipString = coder.decodeObject(forKey: "clipString") as! String
         timeStamp = coder.decodeInteger(forKey: "timeStamp")
+        appIconPath = coder.decodeObject(forKey: "appIconPath") as! String
         super.init()
     }
     
     func encode(with coder: NSCoder) {
         coder.encode(clipString, forKey: "clipString")
         coder.encode(timeStamp, forKey: "timeStamp")
+        coder.encode(appIconPath, forKey: "appIconPath")
     }
 }
