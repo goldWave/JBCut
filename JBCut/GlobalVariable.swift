@@ -58,7 +58,7 @@ struct JBConstants {
     var textBgColor: NSColor = NSColor.init(white: 0.1, alpha: 0.45)
     
     var preShortKey: JBShortKey = JBShortKey(modifyFlags: cmdKey|shiftKey, modifyFlagsString: "⇧⌘", keyCode: kVK_ANSI_K, keyCodeStrig: "K");
-    var nextShortKey: JBShortKey = JBShortKey(modifyFlags: cmdKey|shiftKey, modifyFlagsString: "⇧⌘", keyCode: kVK_ANSI_L, keyCodeStrig: "L");
+    var nextShortKey: JBShortKey = JBShortKey(modifyFlags: cmdKey|shiftKey, modifyFlagsString: "⇧⌘", keyCode: kVK_ANSI_V, keyCodeStrig: "V");
 
     private override init() {
         super.init()

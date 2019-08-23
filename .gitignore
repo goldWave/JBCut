@@ -11,6 +11,7 @@ iOSInjectionProject/
 *.perspectivev3
 !default.perspectivev3
 xcuserdata/
+JBCut.xcodeproj/project.xcworkspace/xcuserdata/
 *.xccheckout
 *.moved-aside
 DerivedData
